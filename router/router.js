@@ -4,5 +4,9 @@ const router = express.Router();
 router.get('/', (req,res)=>{
     res.render('index')
 })
+router.get('/gestionactividades', (req,res)=>{
+    res.render('proyectos/gestionactividades')
+})
+
 
 module.exports = router

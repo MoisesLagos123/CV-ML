@@ -5,7 +5,7 @@ const dotenv = require('dotenv')
 dotenv.config({path: '.env'})
 
 //llamada al router
-app.get('/', require('./router'))
+app.get('/', require('./router/router'))
 
 //carpeta publica
 app.use(express.static('public'))
@@ -15,5 +15,5 @@ app.set('view engine','ejs')
 
 
 app.listen(process.env.PORT, ()=>{
-    console.log('SERVIDOR INICIADO EN: http://localhost:'+process.env.PORT)
+    console.log('SERVIDOR INICIADO EN: https://localhost:'+process.env.PORT)
 })
