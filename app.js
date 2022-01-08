@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
+
 //seteo de variables de entorno
 dotenv.config({path: '.env'})
 
