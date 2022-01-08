@@ -5,13 +5,16 @@ const dotenv = require('dotenv')
 dotenv.config({path: '.env'})
 
 //llamada al router
-app.get('/', require('./router/router'))
+app.use('/', require('./router/router'))
 
 //carpeta publica
 app.use(express.static('public'))
 
 // motor de plantillas
 app.set('view engine','ejs')
+
+
+
 
 
 app.listen(process.env.PORT, ()=>{
