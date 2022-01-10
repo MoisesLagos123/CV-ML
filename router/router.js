@@ -8,7 +8,7 @@ dotenv.config({path: '.env'})
 
 //Vista principal
 router.get('/', (req,res)=>{
-    res.render('index')
+    res.render('index',{alert:false})
 })
 
 
@@ -39,9 +39,15 @@ router.post('/contact', async (req, res)=>{
         subject: email +' '+ subject,
         text: name+': '+message
     })
-
-    console.log()
-
-    res.send('Mensaje Enviado')
+    res.render('index', {
+        alert: true,
+        alertTitle: "Mensaje Enviado",
+        alertMessage: "Su mensaje ha sido enviado con exito",
+        alertIcon: 'success',
+        showConfirmButton: true,
+        timer: undefined,
+        ruta: '/'
+            
+        })
 })
 module.exports = router
