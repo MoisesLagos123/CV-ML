@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router();
 const session = require('express-session')
 const nodemailer = require ('nodemailer')
-
-
+const dotenv = require('dotenv')
+dotenv.config({path: '.env'})
 
 
 //Vista principal
@@ -22,23 +22,26 @@ router.post('/contact', async (req, res)=>{
     const {name, email, subject, message} = req.body
 
     const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
+        host: process.env.HOST,
+        port: process.env.PORT_CORREO,
         secure: true,
         auth:{
-            user: 'portafolio.moises.lagos.f@gmail.com',
-            pass: 'obmvlgnddbyabrkd',
+            user: process.env.USER,
+            pass: process.env.PASS,
         },
         tls:{
             rejectUnauthorized: false
         }
     })
     await transporter.sendMail({
-        from:  'portafolio.moises.lagos.f@gmail.com',
-        to: 'moises.lagos.f@gmail.com',
-        subject: 'Formulario de contacto CV-ML',
-        text: 'hello world'
+        from:  process.env.USER,
+        to: process.env.DESTINATION,
+        subject: email +' '+ subject,
+        text: name+': '+message
     })
-    res.send('recibido')
+
+    console.log()
+
+    res.send('Mensaje Enviado')
 })
 module.exports = router

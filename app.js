@@ -20,9 +20,7 @@ app.use(express.static('public'))
 app.set('view engine','ejs')
 
        
-app.post('/', (req,res)=>{
-    console.log(req.body)
-})
+
 
 
 app.listen(process.env.PORT, ()=>{
