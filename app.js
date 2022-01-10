@@ -2,6 +2,11 @@ const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
 
+
+//configurar node para que procese los datos de formularios
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+
 //seteo de variables de entorno
 dotenv.config({path: '.env'})
 
@@ -14,8 +19,10 @@ app.use(express.static('public'))
 // motor de plantillas
 app.set('view engine','ejs')
 
-
-
+       
+app.post('/', (req,res)=>{
+    console.log(req.body)
+})
 
 
 app.listen(process.env.PORT, ()=>{
