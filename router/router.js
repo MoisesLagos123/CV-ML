@@ -12,10 +12,15 @@ router.get('/', (req,res)=>{
 })
 
 
-//vista al proyecto N1
+//vista al proyectos
 router.get('/gestionactividades', (req,res)=>{
     res.render('proyectos/gestionactividades')
 })
+
+router.get('/projectlogin', (req,res)=>{
+    res.render('proyectos/projectlogin')
+})
+
 
 
 router.post('/contact', async (req, res)=>{
