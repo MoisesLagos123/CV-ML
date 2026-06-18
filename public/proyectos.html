@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Proyectos personales de Moisés Lagos F. — OmniFlow, sistema POS multi-sucursal en Python + React con Clean Architecture estricta.">
+<meta name="author" content="Moisés Lagos F.">
+<meta name="theme-color" content="#0A0A0B">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://moiseslagos.dev/proyectos">
+<meta property="og:title" content="Proyectos personales — Moisés Lagos F.">
+<meta property="og:description" content="OmniFlow: sistema POS multi-sucursal con Clean Architecture, 286+162 tests y mypy --strict.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<meta property="og:url" content="https://moiseslagos.dev/proyectos">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Proyectos — Moisés Lagos F.</title>
+
+<script>
+  (function() {
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) document.documentElement.setAttribute('data-theme', 'light');
+  })();
+</script>
+
+<style>
+  /* ============================================================
+     TOKENS — mismas variables que index.html
+     ============================================================ */
+  :root {
+    --bg: #FAFAFA; --surface: #FFFFFF; --surface-2: #F4F4F5; --surface-3: #EFEFF1;
+    --text: #09090B; --text-muted: #52525B; --text-soft: #A1A1AA;
+    --border: #E4E4E7; --border-strong: #D4D4D8;
+    --brand: #2563EB; --brand-hover: #1D4ED8; --accent: #06B6D4;
+    --accent-soft: rgba(6, 182, 212, 0.10); --success: #10B981; --warning: #F59E0B;
+    --shadow-sm: 0 1px 2px rgba(9,9,11,0.04);
+    --shadow-md: 0 4px 16px rgba(9,9,11,0.06);
+    --shadow-lg: 0 12px 40px rgba(9,9,11,0.10);
+    --shadow-glow: 0 0 0 1px rgba(37,99,235,0.10);
+    --nav-bg: rgba(250,250,250,0.72);
+    --hero-grid-color: rgba(9,9,11,0.04);
+    --radius-sm: 8px; --radius-md: 14px; --radius-lg: 22px; --radius-xl: 28px; --radius-pill: 999px;
+    --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+    --font-display: 'Space Grotesk', 'Inter Tight', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  [data-theme="dark"] {
+    --bg: #0A0A0B; --surface: #111114; --surface-2: #17171A; --surface-3: #1F1F23;
+    --text: #FAFAFA; --text-muted: #A1A1AA; --text-soft: #71717A;
+    --border: #27272A; --border-strong: #3F3F46;
+    --brand: #3B82F6; --brand-hover: #60A5FA; --accent: #22D3EE;
+    --accent-soft: rgba(34,211,238,0.12); --success: #34D399; --warning: #FBBF24;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);
+    --shadow-glow: 0 0 0 1px rgba(59,130,246,0.20);
+    --nav-bg: rgba(10,10,11,0.72);
+    --hero-grid-color: rgba(255,255,255,0.05);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--font-body); background: var(--bg); color: var(--text);
+    line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; transition: background 0.4s var(--ease), color 0.4s var(--ease);
+    overflow-x: hidden;
+  }
+  a { color: var(--brand); text-decoration: none; transition: color 0.2s var(--ease); }
+  a:hover { color: var(--brand-hover); }
+  ::selection { background: var(--brand); color: #fff; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+    }
+  }
+
+  /* Nav floating pill */
+  nav {
+    position: fixed; top: var(--s-4); left: 50%; transform: translateX(-50%);
+    z-index: 50; background: var(--nav-bg);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid var(--border); border-radius: var(--radius-pill);
+    padding: 6px 6px 6px 20px; display: flex; align-items: center;
+    gap: var(--s-3); box-shadow: var(--shadow-md); max-width: calc(100% - var(--s-6));
+  }
+  .nav-logo {
+    font-family: var(--font-display); font-weight: 700; font-size: 15px;
+    color: var(--text); letter-spacing: -0.3px; white-space: nowrap;
+  }
+  .nav-logo .dot {
+    display: inline-block; width: 6px; height: 6px; background: var(--success);
+    border-radius: 50%; margin-right: 6px; animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  }
+  .nav-links { display: flex; gap: 2px; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted); font-size: 13.5px; font-weight: 500;
+    padding: 8px 12px; border-radius: var(--radius-pill); transition: all 0.2s var(--ease);
+  }
+  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .nav-links a.active { color: var(--brand); background: var(--accent-soft); }
+  .theme-toggle {
+    background: var(--brand); border: none; color: #fff; width: 36px; height: 36px;
+    border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+    transition: all 0.2s var(--ease); flex-shrink: 0;
+  }
+  .theme-toggle:hover { background: var(--brand-hover); transform: scale(1.05); }
+  .theme-toggle svg { width: 16px; height: 16px; }
+
+  /* Layout */
+  main { max-width: 1180px; margin: 0 auto; padding: 0 var(--s-6); }
+  section { padding: var(--s-9) 0 var(--s-7); scroll-margin-top: var(--s-9); }
+
+  /* Page hero */
+  .page-hero {
+    padding: var(--s-10) 0 var(--s-7);
+    position: relative;
+  }
+  .page-hero-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--hero-grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hero-grid-color) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .page-hero-inner { position: relative; z-index: 1; }
+
+  .breadcrumb {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);
+    margin-bottom: var(--s-5);
+  }
+  .breadcrumb a { color: var(--text-muted); }
+  .breadcrumb a:hover { color: var(--brand); }
+  .breadcrumb svg { width: 12px; height: 12px; opacity: 0.5; }
+
+  .page-hero h1 {
+    font-family: var(--font-display); font-size: clamp(40px, 7vw, 84px);
+    font-weight: 700; letter-spacing: -3px; line-height: 0.95;
+    color: var(--text); margin-bottom: var(--s-4);
+  }
+  .page-hero h1 .accent {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .page-hero p.lead {
+    font-size: clamp(17px, 2vw, 21px); color: var(--text-muted);
+    max-width: 680px; line-height: 1.55;
+  }
+
+  /* OmniFlow showcase */
+  .project-showcase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: var(--s-7);
+  }
+
+  .ps-header {
+    padding: var(--s-7);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--accent-soft) 0%, transparent 60%);
+    position: relative;
+  }
+
+  .ps-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    color: var(--warning); background: rgba(245,158,11,0.12);
+    border: 1px solid var(--warning); padding: 5px 12px;
+    border-radius: var(--radius-pill); letter-spacing: 0.5px;
+    text-transform: uppercase; margin-bottom: var(--s-4);
+  }
+  .ps-status .dot {
+    width: 6px; height: 6px; background: var(--warning); border-radius: 50%;
+    animation: pulse-warn 2s ease-in-out infinite;
+  }
+  @keyframes pulse-warn {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.5); }
+    50% { box-shadow: 0 0 0 5px rgba(245,158,11,0); }
+  }
+
+  .ps-name {
+    font-family: var(--font-display); font-size: clamp(40px, 6vw, 64px);
+    font-weight: 800; letter-spacing: -2.5px; line-height: 1;
+    color: var(--text); margin-bottom: var(--s-3);
+  }
+  .ps-name .gradient {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .ps-tagline {
+    font-size: clamp(16px, 2vw, 19px); color: var(--text-muted);
+    max-width: 720px; line-height: 1.5; margin-bottom: var(--s-5);
+  }
+
+  .ps-links {
+    display: flex; gap: var(--s-3); flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px; border-radius: var(--radius-pill);
+    font-size: 13.5px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s var(--ease); border: 1px solid transparent;
+    font-family: var(--font-body); white-space: nowrap; text-decoration: none;
+  }
+  .btn svg { width: 16px; height: 16px; }
+  .btn-primary {
+    background: var(--text); color: var(--bg); border-color: var(--text);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); color: var(--bg); }
+  .btn-secondary {
+    background: transparent; color: var(--text); border-color: var(--border-strong);
+  }
+  .btn-secondary:hover { border-color: var(--text); transform: translateY(-2px); }
+
+  /* Stats grid */
+  .ps-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+  }
+  .ps-stat {
+    padding: var(--s-5);
+    text-align: center;
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+    transition: background 0.2s var(--ease);
+  }
+  .ps-stat:last-child { border-right: none; }
+  .ps-stat:hover { background: var(--surface-2); }
+  .ps-stat .value {
+    font-family: var(--font-display); font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700; color: var(--brand); letter-spacing: -1.5px; line-height: 1;
+  }
+  .ps-stat .value .small { font-size: 0.5em; color: var(--text-muted); margin-left: 4px; }
+  .ps-stat .label {
+    font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1px; margin-top: var(--s-2);
+  }
+  .ps-stat.accent .value { color: var(--accent); }
+
+  /* Section blocks */
+  .ps-block {
+    padding: var(--s-7);
+    border-bottom: 1px solid var(--border);
+  }
+  .ps-block:last-child { border-bottom: none; }
+  .ps-block h3 {
+    font-family: var(--font-display); font-size: 22px; font-weight: 700;
+    letter-spacing: -0.5px; color: var(--text); margin-bottom: var(--s-4);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .ps-block h3 .num {
+    font-family: var(--font-mono); font-size: 11px; color: var(--brand);
+    background: var(--accent-soft); padding: 4px 10px; border-radius: var(--radius-pill);
+    font-weight: 500; letter-spacing: 0.5px;
+  }
+  .ps-block .body { font-size: 15px; color: var(--text); line-height: 1.7; }
+  .ps-block .body p + p { margin-top: var(--s-3); }
+  .ps-block .body strong { color: var(--brand); }
+  .ps-block .body code {
+    font-family: var(--font-mono); font-size: 0.9em; color: var(--accent);
+    background: var(--surface-2); padding: 2px 6px; border-radius: 4px;
+  }
+
+  /* Stack chips */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--s-5);
+  }
+  .stack-col h4 {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: var(--s-3);
+  }
+  .stack-chips {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .chip {
+    background: var(--surface-2); color: var(--text);
+    padding: 5px 11px; border-radius: var(--radius-pill);
+    font-size: 12.5px; font-weight: 500; font-family: var(--font-mono);
+    border: 1px solid var(--border);
+  }
+  .chip.featured {
+    background: var(--brand); color: #fff; border-color: var(--brand);
+  }
+
+  /* Module grid */
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-3);
+  }
+  .module {
+    display: flex; align-items: flex-start; gap: var(--s-3);
+    padding: var(--s-3) var(--s-4);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--success);
+    transition: all 0.2s var(--ease);
+  }
+  .module:hover {
+    background: var(--surface-3);
+    transform: translateX(2px);
+  }
+  .module.pending {
+    border-left-color: var(--warning);
+    opacity: 0.85;
+  }
+  .module.observation {
+    border-left-color: var(--text-soft);
+    opacity: 0.7;
+  }
+  .module .check {
+    color: var(--success); font-weight: 700; font-size: 14px;
+    flex-shrink: 0; padding-top: 1px;
+  }
+  .module.pending .check { color: var(--warning); }
+  .module.observation .check { color: var(--text-soft); }
+  .module .meta {
+    flex: 1;
+    font-size: 13.5px; color: var(--text); line-height: 1.4;
+  }
+  .module .meta strong {
+    color: var(--text); font-family: var(--font-display);
+    font-size: 14px; font-weight: 600; display: block; margin-bottom: 2px;
+  }
+  .module .meta .sub {
+    color: var(--text-muted); font-size: 12.5px;
+  }
+
+  /* Decision items */
+  .decisions {
+    display: grid;
+    gap: var(--s-3);
+  }
+  .decision {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--s-4);
+    transition: all 0.2s var(--ease);
+  }
+  .decision:hover {
+    border-color: var(--brand);
+    transform: translateY(-1px);
+  }
+  .decision strong {
+    font-family: var(--font-display); font-size: 14.5px; color: var(--brand);
+    font-weight: 600; display: block; margin-bottom: 4px;
+  }
+  .decision p { font-size: 13.5px; color: var(--text); line-height: 1.55; }
+
+  /* Why I'm building it */
+  .ps-why {
+    padding: var(--s-7);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-hover) 100%);
+    color: #fff;
+    text-align: center;
+  }
+  .ps-why h3 {
+    font-family: var(--font-display); font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700; letter-spacing: -1px; margin-bottom: var(--s-3);
+  }
+  .ps-why p {
+    font-size: 16px; line-height: 1.6; opacity: 0.95;
+    max-width: 680px; margin: 0 auto;
+  }
+
+  /* Other projects */
+  .other-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-4);
+  }
+  .other-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--s-5);
+    transition: all 0.2s var(--ease);
+  }
+  .other-card:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .other-card h3 {
+    font-family: var(--font-display); font-size: 18px; font-weight: 600;
+    color: var(--text); letter-spacing: -0.3px; margin-bottom: 4px;
+  }
+  .other-card .tag {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-muted); background: var(--surface-2);
+    padding: 3px 8px; border-radius: var(--radius-pill);
+    margin-bottom: var(--s-3);
+  }
+  .other-card p {
+    font-size: 14px; color: var(--text-muted); line-height: 1.6;
+    margin-bottom: var(--s-3);
+  }
+  .other-card .stack {
+    display: flex; flex-wrap: wrap; gap: 4px;
+    margin-top: var(--s-3);
+  }
+  .other-card .mini-chip {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-muted); background: var(--surface-2);
+    padding: 3px 8px; border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  /* Section head */
+  .section-head {
+    display: flex; align-items: baseline; gap: var(--s-4);
+    margin-bottom: var(--s-6);
+  }
+  .section-num {
+    font-family: var(--font-mono); font-size: 14px; color: var(--brand);
+    letter-spacing: 0.5px;
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 700; letter-spacing: -1.5px; line-height: 1.05; color: var(--text);
+  }
+  .section-sub {
+    color: var(--text-muted); font-size: 15px;
+    margin-left: auto; max-width: 380px; text-align: right; line-height: 1.5;
+  }
+
+  /* Footer back-link */
+  .back-cta {
+    margin-top: var(--s-9);
+    padding: var(--s-7);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    text-align: center;
+  }
+  .back-cta h2 {
+    font-family: var(--font-display); font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700; letter-spacing: -1.5px; margin-bottom: var(--s-3);
+  }
+  .back-cta p { color: var(--text-muted); margin-bottom: var(--s-5); }
+
+  /* Reveal animations */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .ps-stats { grid-template-columns: repeat(2, 1fr); }
+    .ps-stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .ps-stat:nth-child(2) { border-right: 1px solid var(--border); }
+    .ps-stat:nth-last-child(-n+2) { border-bottom: none; }
+    .stack-grid { grid-template-columns: 1fr 1fr; }
+    .module-grid { grid-template-columns: 1fr; }
+    .other-grid { grid-template-columns: 1fr; }
+    .section-sub { display: none; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .stack-grid { grid-template-columns: 1fr; }
+    .ps-stats { grid-template-columns: 1fr 1fr; }
+    main { padding: 0 var(--s-4); }
+    .ps-header, .ps-block, .ps-why, .back-cta { padding: var(--s-5); }
+    section { padding: var(--s-7) 0 var(--s-5); }
+    .page-hero { padding-top: var(--s-9); }
+    nav { padding: 6px 6px 6px 14px; gap: var(--s-2); }
+    .nav-logo { font-size: 13px; }
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav role="navigation" aria-label="Principal">
+  <a href="/" class="nav-logo"><span class="dot" aria-hidden="true"></span>Moisés Lagos</a>
+  <ul class="nav-links">
+    <li><a href="/#sobre-mi">Sobre mí</a></li>
+    <li><a href="/#skills">Stack</a></li>
+    <li><a href="/#experiencia">Experiencia</a></li>
+    <li><a href="/proyectos" class="active">Proyectos</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
+  </button>
+</nav>
+
+<main id="top">
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true"></div>
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="/">CV</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+        <span>Proyectos personales</span>
+      </div>
+
+      <h1>Proyectos.<br><span class="accent">Lo que construyo fuera del horario.</span></h1>
+      <p class="lead">
+        Cero ficción: código real, commits firmados, tests pasando. Construir cosas en mi
+        tiempo libre es como me mantengo afilado y exploro técnicas que no siempre puedo
+        usar en el día a día.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OMNIFLOW — Project Showcase
+       ============================================================ -->
+  <section id="omniflow" class="reveal">
+
+    <div class="project-showcase">
+
+      <!-- Header -->
+      <div class="ps-header">
+        <span class="ps-status">
+          <span class="dot" aria-hidden="true"></span>
+          En construcción · Desarrollo activo
+        </span>
+        <h2 class="ps-name"><span class="gradient">OmniFlow</span></h2>
+        <p class="ps-tagline">
+          Sistema POS multi-sucursal para retail chileno con módulo financiero/contable integrado.
+          Construido bajo Clean Architecture estricta, con tipado completo
+          (<code style="font-family:var(--font-mono); font-size:0.9em; color:var(--accent);">mypy --strict</code>)
+          y cobertura de tests amplia.
+        </p>
+        <div class="ps-links">
+          <a href="https://omnifow-seven.vercel.app/login"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-primary"
+             title="Abre el login del demo en vivo">
+            <span style="display:inline-block; width:8px; height:8px; background:#10B981; border-radius:50%; box-shadow:0 0 0 0 rgba(16,185,129,0.7); animation:pulse 1.8s ease-in-out infinite; flex-shrink:0;" aria-hidden="true"></span>
+            Probar demo en vivo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7M8 7h9v9"/>
+            </svg>
+          </a>
+          <a href="https://github.com/MoisesLagos123/omnifow" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+            Ver código en GitHub
+          </a>
+          <a href="#tech-decisions" class="btn btn-secondary">
+            Decisiones técnicas
+          </a>
+        </div>
+
+        <p style="font-family:var(--font-mono); font-size:12px; color:var(--text-soft); margin-top:var(--s-4); line-height:1.6;">
+          <span style="color:var(--text-muted);">Credenciales demo:</span>
+          <code style="background:var(--surface-2); border:1px solid var(--border); color:var(--text); padding:3px 8px; border-radius:6px; font-family:var(--font-mono);">admin@minierp.cl</code>
+          <code style="background:var(--surface-2); border:1px solid var(--border); color:var(--text); padding:3px 8px; border-radius:6px; font-family:var(--font-mono); margin-left:4px;">Admin12345!</code>
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div class="ps-stats">
+        <div class="ps-stat">
+          <div class="value">70+</div>
+          <div class="label">Commits</div>
+        </div>
+        <div class="ps-stat">
+          <div class="value">286</div>
+          <div class="label">Tests backend</div>
+        </div>
+        <div class="ps-stat">
+          <div class="value">162</div>
+          <div class="label">Tests frontend</div>
+        </div>
+        <div class="ps-stat accent">
+          <div class="value">100<span class="small">%</span></div>
+          <div class="label">Tipado mypy</div>
+        </div>
+      </div>
+
+      <!-- ¿Qué es? -->
+      <div class="ps-block">
+        <h3><span class="num">01</span> ¿Qué es?</h3>
+        <div class="body">
+          <p>
+            <strong>En simple:</strong> el cerebro de una cadena de tiendas. Maneja ventas en caja,
+            inventario por sucursal, control de stock, conciliación financiera y cumplimiento tributario
+            chileno (boletas, facturas, notas de crédito).
+          </p>
+          <p>
+            <strong>En técnico:</strong> Sistema transaccional con concurrencia controlada por locks
+            pesimistas (<code>SELECT FOR UPDATE</code>), atomicidad multi-entidad vía Unit of Work,
+            RBAC granular basado en perfiles, audit trail inmutable, rotación de refresh tokens con
+            detección de replay, y FEFO (First Expired, First Out) automático en productos perecibles.
+          </p>
+        </div>
+      </div>
+
+      <!-- Stack -->
+      <div class="ps-block">
+        <h3><span class="num">02</span> Stack técnico</h3>
+        <div class="stack-grid">
+          <div class="stack-col">
+            <h4>Backend</h4>
+            <div class="stack-chips">
+              <span class="chip featured">Python 3.13</span>
+              <span class="chip featured">FastAPI</span>
+              <span class="chip">SQLAlchemy 2.x</span>
+              <span class="chip">PostgreSQL 16</span>
+              <span class="chip">Alembic</span>
+              <span class="chip">Pydantic v2</span>
+              <span class="chip">PyJWT RS256</span>
+              <span class="chip">Argon2id</span>
+              <span class="chip">pytest</span>
+              <span class="chip">mypy --strict</span>
+            </div>
+          </div>
+          <div class="stack-col">
+            <h4>Frontend</h4>
+            <div class="stack-chips">
+              <span class="chip featured">React 18</span>
+              <span class="chip featured">TypeScript</span>
+              <span class="chip">Vite</span>
+              <span class="chip">Zustand</span>
+              <span class="chip">React Router v6</span>
+              <span class="chip">React Hook Form</span>
+              <span class="chip">Zod</span>
+              <span class="chip">Lucide React</span>
+              <span class="chip">Vitest</span>
+              <span class="chip">Testing Library</span>
+            </div>
+          </div>
+          <div class="stack-col">
+            <h4>Infra y calidad</h4>
+            <div class="stack-chips">
+              <span class="chip">Docker Compose</span>
+              <span class="chip">Monorepo</span>
+              <span class="chip">Clean Architecture</span>
+              <span class="chip">SOLID</span>
+              <span class="chip">UoW pattern</span>
+              <span class="chip">Repository pattern</span>
+              <span class="chip">WCAG AA</span>
+              <span class="chip">Dark / Light mode</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulos implementados -->
+      <div class="ps-block">
+        <h3><span class="num">03</span> Módulos implementados (10)</h3>
+        <div class="module-grid">
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>Autenticación</strong>
+              <span class="sub">JWT RS256 + rotación de refresh tokens con detección de replay, Argon2id, bloqueo 5/15min, logout server-side.</span>
+            </div>
+          </div>
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>Administración</strong>
+              <span class="sub">Usuarios, perfiles y permisos. RBAC granular con códigos <code style="font-family:var(--font-mono); font-size:0.85em; color:var(--accent);">recurso.accion</code>, asignación a sucursales.</span>
+            </div>
+          </div>
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>Sucursales / Cajas / Folios SII</strong>
+              <span class="sub">AsignadorFolios con <code style="font-family:var(--font-mono); font-size:0.85em; color:var(--accent);">FOR UPDATE</code>, gestión de rangos, parámetros tributarios por sucursal.</span>
+            </div>
+          </div>
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>Inventario</strong>
+              <span class="sub">Productos, categorías, bodegas, costo promedio por bodega, ajustes y transferencias atómicas.</span>
+            </div>
+          </div>
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>Inventario · Lotes y vencimiento</strong>
+              <span class="sub">Reporte "Por vencer" + FEFO automático en perecibles con control por lote.</span>
+            </div>
+          </div>
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>Clientes</strong>
+              <span class="sub">CRUD con validación de RUT chileno (módulo 11), consulta de saldos.</span>
+            </div>
+          </div>
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>Caja (sesión + arqueo)</strong>
+              <span class="sub">Apertura con monto inicial, movimientos en efectivo, cierre con desglose por método de pago. Lock pesimista sobre sesión.</span>
+            </div>
+          </div>
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>POS / Ventas atómicas</strong>
+              <span class="sub">Pagos mixtos (efectivo, transferencia, débito, crédito), FEFO automático, generación de NC al anular, comprobante 80mm imprimible.</span>
+            </div>
+          </div>
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>Reservas de stock</strong>
+              <span class="sub">Ligadas a sesión de caja, <code style="font-family:var(--font-mono); font-size:0.85em; color:var(--accent);">FOR UPDATE</code> evita overselling. Primer cajero gana.</span>
+            </div>
+          </div>
+          <div class="module">
+            <span class="check">✓</span>
+            <div class="meta">
+              <strong>Audit log viewer</strong>
+              <span class="sub">Filtros por acción, usuario, resultado y fecha. Detalle con before/after JSON.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pendientes -->
+      <div class="ps-block">
+        <h3><span class="num">04</span> Roadmap priorizado</h3>
+        <div class="module-grid">
+          <div class="module pending">
+            <span class="check">○</span>
+            <div class="meta">
+              <strong>Compras + Proveedores + CxP</strong>
+              <span class="sub">Cierra el ciclo de costos. Ingreso a inventario automático desde compra.</span>
+            </div>
+          </div>
+          <div class="module pending">
+            <span class="check">○</span>
+            <div class="meta">
+              <strong>Cuentas por Cobrar (CxC)</strong>
+              <span class="sub">Ventas a crédito con vencimiento y abonos.</span>
+            </div>
+          </div>
+          <div class="module pending">
+            <span class="check">○</span>
+            <div class="meta">
+              <strong>Cambiar contraseña</strong>
+              <span class="sub">Aprovecha <code style="font-family:var(--font-mono); font-size:0.85em; color:var(--accent);">revocar_todos_de</code> ya implementado.</span>
+            </div>
+          </div>
+          <div class="module pending">
+            <span class="check">○</span>
+            <div class="meta">
+              <strong>Configuración global SII</strong>
+              <span class="sub">IVA, datos emisor, certificado.</span>
+            </div>
+          </div>
+          <div class="module observation">
+            <span class="check">⏸</span>
+            <div class="meta">
+              <strong>Firma electrónica DTE real</strong>
+              <span class="sub">En observación. Emisión interna ya funciona; firma XMLDSIG + envío SII pendiente.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decisiones técnicas -->
+      <div class="ps-block" id="tech-decisions">
+        <h3><span class="num">05</span> Decisiones técnicas notables</h3>
+        <div class="decisions">
+          <div class="decision">
+            <strong>Concurrencia con locks pesimistas</strong>
+            <p><code>SELECT FOR UPDATE</code> sobre stock, folios SII y sesiones de caja. Evita race conditions reales en venta concurrente sin depender de retries optimistas.</p>
+          </div>
+          <div class="decision">
+            <strong>Unit of Work por caso de uso</strong>
+            <p>Cada use case abre/cierra su propio UoW. Cualquier excepción revierte todo el flujo. La auditoría se publica dentro de la misma transacción (consistencia fuerte).</p>
+          </div>
+          <div class="decision">
+            <strong>Rotación de refresh tokens con detección de replay</strong>
+            <p>Al usar un refresh, se emite uno nuevo y el anterior queda revocado. Si alguien intenta reutilizar uno ya revocado, se dispara <code>ERR_REFRESH_REVOCADO</code> y se invalidan TODOS los tokens de ese usuario.</p>
+          </div>
+          <div class="decision">
+            <strong>Asignador de folios SII centralizado</strong>
+            <p>Lock pesimista sobre <code>RangoFolios</code> controla agotamiento y permite gestión de rangos por sucursal y tipo de documento sin conflictos entre cajas.</p>
+          </div>
+          <div class="decision">
+            <strong>Cálculo IVA con redondeo back-out</strong>
+            <p><code>iva = round(bruto * 19 / 119)</code> para precios "IVA incluido" — fórmula correcta del SII Chile, evita el clásico bug de calcular hacia delante y perder un peso.</p>
+          </div>
+          <div class="decision">
+            <strong>RBAC dinámico, no hardcoded</strong>
+            <p>Perfiles configurables desde el módulo de Administración. Verificación de permisos en cada caso de uso (defense in depth), no solo en UI. Decorador <code>@requires_permission</code>.</p>
+          </div>
+          <div class="decision">
+            <strong>Modelos ORM separados del dominio</strong>
+            <p>Entidades de dominio son <code>@dataclass</code> puros sin dependencia de SQLAlchemy. Mappers explícitos en repositorios. Permite testear el dominio sin DB.</p>
+          </div>
+          <div class="decision">
+            <strong>Cliente HTTP frontend con interceptor single-flight</strong>
+            <p>Refresh automático al 401, single-flight para evitar tormentas de refresh concurrentes, y anti-loop para detectar refresh que también falla.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why -->
+      <div class="ps-why">
+        <h3>¿Por qué lo construyo?</h3>
+        <p>
+          Para mantenerme afilado en lo que no toco a diario: arquitectura limpia desde cero,
+          testing serio, concurrencia, seguridad aplicada. Y porque hay decisiones técnicas
+          (locks pesimistas, atomicidad multi-entidad, RBAC granular) que solo se aprenden
+          construyéndolas, no leyéndolas.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OTROS PROYECTOS
+       ============================================================ -->
+  <section id="otros" class="reveal">
+    <div class="section-head">
+      <span class="section-num">02 /</span>
+      <h2 class="section-title">Otros proyectos.</h2>
+      <p class="section-sub">Experimentos y aprendizaje que no llegaron a producción.</p>
+    </div>
+
+    <div class="other-grid">
+      <div class="other-card">
+        <h3>genera-documentos-sii</h3>
+        <span class="tag">Skill de Claude Code · Python + Django</span>
+        <p>
+          Skill propia de 7 fases para construir un sistema de emisión de Documentos
+          Tributarios Electrónicos chilenos: modelado, construcción de XML, firma XMLDSIG
+          (SHA1+RSA), integración SOAP con el SII y despliegue. Stack pensado:
+          Django 5 + DRF + Celery + Redis + PostgreSQL.
+        </p>
+        <div class="stack">
+          <span class="mini-chip">Python 3.12</span>
+          <span class="mini-chip">Django</span>
+          <span class="mini-chip">signxml</span>
+          <span class="mini-chip">zeep</span>
+          <span class="mini-chip">XMLDSIG</span>
+        </div>
+      </div>
+
+      <div class="other-card">
+        <h3>Otros experimentos</h3>
+        <span class="tag">Side projects rápidos</span>
+        <p>
+          Pequeños proyectos para probar tecnologías: agenda de contactos en Spring Boot 3 + JPA,
+          formulario móvil cross-platform en Ionic 8 + Capacitor + Angular 20, app to-do en
+          React 18 + Vite, monitor de red para NOC en Tkinter + FastAPI + WebSockets.
+        </p>
+        <div class="stack">
+          <span class="mini-chip">Spring Boot</span>
+          <span class="mini-chip">Ionic + Capacitor</span>
+          <span class="mini-chip">React + Vite</span>
+          <span class="mini-chip">FastAPI WS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to CV CTA -->
+  <div class="back-cta">
+    <h2>Volver al CV</h2>
+    <p>El resto de la experiencia, skills y formación están en la página principal.</p>
+    <a href="/" class="btn btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Ver CV completo
+    </a>
+  </div>
+
+</main>
+
+<script>
+  // Theme toggle (idéntico al index.html)
+  (function() {
+    var btn = document.getElementById('themeToggle');
+    var icon = document.getElementById('themeIcon');
+    var sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+    var moon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    function updateUI() {
+      var t = document.documentElement.getAttribute('data-theme');
+      icon.innerHTML = t === 'dark' ? sun : moon;
+    }
+    btn.addEventListener('click', function() {
+      var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateUI();
+    });
+    updateUI();
+  })();
+
+  // Scroll reveal
+  (function() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

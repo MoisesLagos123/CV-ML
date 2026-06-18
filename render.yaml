@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: cv-web-moises-lagos
+    runtime: node
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: npm install --production
+    startCommand: node server.js
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20

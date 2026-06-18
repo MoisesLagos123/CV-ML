@@ -1,25 +1,21 @@
 {
-  "engines": {
-    "node": "17.3.0"
-  },
-  "name": "cvml",
+  "name": "cv-web-moises-lagos",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "CV web de Moisés Lagos F. — servido por Express",
+  "private": true,
+  "main": "server.js",
+  "engines": {
+    "node": ">=20.0.0"
   },
-  "keywords": [],
-  "author": "Moises Lagos Fernandez",
-  "license": "ISC",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.2",
-    "express-session": "^1.17.2",
-    "node": "^17.3.0",
-    "nodemailer": "^6.7.2",
-    "sweetalert2": "^11.3.4"
-  }
+    "compression": "^1.7.4",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0"
+  },
+  "license": "UNLICENSED",
+  "author": "Moisés Lagos F. <moises.lagos.f@gmail.com>"
 }

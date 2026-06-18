@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Moisés Lagos F. — Analista Programador especializado en Oracle, integraciones empresariales y migración de datos a Google Cloud (BigQuery + Looker Studio).">
+<meta name="author" content="Moisés Lagos F.">
+<meta name="theme-color" content="#0A0A0B">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+
+<!-- Canonical (reemplazar al desplegar) -->
+<link rel="canonical" href="https://moiseslagos.dev/">
+
+<!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
+<meta property="og:title" content="Moisés Lagos F. — Analista Programador">
+<meta property="og:description" content="Oracle EBS · PL/SQL · OIC · BigQuery · Angular · Integraciones empresariales y automatización">
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="es_CL">
+<meta property="og:url" content="https://moiseslagos.dev/">
+<meta property="og:image" content="https://moiseslagos.dev/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Moisés Lagos F. — Analista Programador">
+<meta name="twitter:description" content="Oracle EBS · PL/SQL · OIC · BigQuery · Angular · Integraciones empresariales y automatización">
+<meta name="twitter:image" content="https://moiseslagos.dev/og-image.png">
+
+<!-- Profile metadata -->
+<meta property="profile:first_name" content="Moisés">
+<meta property="profile:last_name" content="Lagos">
+
+<!-- Favicons (SVG con fallback) -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="favicon.svg">
+
+<!-- JSON-LD Person schema (SEO + Google Knowledge Panel) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Moisés Lagos F.",
+  "givenName": "Moisés",
+  "familyName": "Lagos",
+  "jobTitle": "Analista Programador",
+  "description": "Analista Programador con foco en Oracle, integraciones empresariales y migración de datos a Google Cloud.",
+  "email": "mailto:moises.lagos.f@gmail.com",
+  "telephone": "+56959789526",
+  "url": "https://moiseslagos.dev/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Santiago",
+    "addressCountry": "CL"
+  },
+  "knowsAbout": [
+    "PL/SQL",
+    "Oracle E-Business Suite",
+    "Oracle Integration Cloud",
+    "Google BigQuery",
+    "Looker Studio",
+    "Angular",
+    "Java",
+    "Spring Boot",
+    "Python",
+    "FastAPI",
+    "Docker",
+    "GitLab CI/CD"
+  ],
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "Duoc UC",
+      "description": "Analista Programador Computacional, 2021"
+    }
+  ]
+}
+</script>
+
+<title>Moisés Lagos F. — Analista Programador</title>
+
+<script>
+  (function() {
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) document.documentElement.setAttribute('data-theme', 'light');
+  })();
+</script>
+
+<style>
+  /* ============================================================
+     TOKENS
+     ============================================================ */
+  :root {
+    /* Palette — Light */
+    --bg: #FAFAFA;
+    --surface: #FFFFFF;
+    --surface-2: #F4F4F5;
+    --surface-3: #EFEFF1;
+    --text: #09090B;
+    --text-muted: #52525B;
+    --text-soft: #A1A1AA;
+    --border: #E4E4E7;
+    --border-strong: #D4D4D8;
+    --brand: #2563EB;
+    --brand-hover: #1D4ED8;
+    --accent: #06B6D4;
+    --accent-soft: rgba(6, 182, 212, 0.10);
+    --success: #10B981;
+    --warning: #F59E0B;
+
+    /* Effects */
+    --shadow-sm: 0 1px 2px rgba(9, 9, 11, 0.04);
+    --shadow-md: 0 4px 16px rgba(9, 9, 11, 0.06);
+    --shadow-lg: 0 12px 40px rgba(9, 9, 11, 0.10);
+    --shadow-glow: 0 0 0 1px rgba(37, 99, 235, 0.10);
+
+    --nav-bg: rgba(250, 250, 250, 0.72);
+    --hero-grid-color: rgba(9, 9, 11, 0.04);
+    --spotlight: rgba(37, 99, 235, 0.06);
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-xl: 28px;
+    --radius-pill: 999px;
+
+    /* Spacing 8pt */
+    --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+    --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+    --s-9: 96px; --s-10: 128px;
+
+    /* Fonts (system-first, optional web fonts if locally installed) */
+    --font-display: 'Space Grotesk', 'Inter Tight', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+
+    /* Z-index scale */
+    --z-nav: 50;
+    --z-overlay: 100;
+
+    /* Motion */
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-theme="dark"] {
+    /* Palette — Dark OLED */
+    --bg: #0A0A0B;
+    --surface: #111114;
+    --surface-2: #17171A;
+    --surface-3: #1F1F23;
+    --text: #FAFAFA;
+    --text-muted: #A1A1AA;
+    --text-soft: #71717A;
+    --border: #27272A;
+    --border-strong: #3F3F46;
+    --brand: #3B82F6;
+    --brand-hover: #60A5FA;
+    --accent: #22D3EE;
+    --accent-soft: rgba(34, 211, 238, 0.12);
+    --success: #34D399;
+    --warning: #FBBF24;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
+    --shadow-glow: 0 0 0 1px rgba(59, 130, 246, 0.20);
+
+    --nav-bg: rgba(10, 10, 11, 0.72);
+    --hero-grid-color: rgba(255, 255, 255, 0.05);
+    --spotlight: rgba(59, 130, 246, 0.12);
+  }
+
+  /* ============================================================
+     RESET
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background 0.4s var(--ease), color 0.4s var(--ease);
+    overflow-x: hidden;
+  }
+
+  a {
+    color: var(--brand);
+    text-decoration: none;
+    transition: color 0.2s var(--ease);
+  }
+  a:hover { color: var(--brand-hover); }
+
+  ::selection { background: var(--brand); color: #fff; }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* ============================================================
+     NAVIGATION — Floating Pill
+     ============================================================ */
+  nav {
+    position: fixed;
+    top: var(--s-4);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--z-nav);
+    background: var(--nav-bg);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 6px 6px 6px 20px;
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    box-shadow: var(--shadow-md);
+    max-width: calc(100% - var(--s-6));
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+  }
+
+  .nav-logo .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--success);
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 0 0 var(--success);
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: var(--radius-pill);
+    transition: all 0.2s var(--ease);
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+
+  .theme-toggle {
+    background: var(--brand);
+    border: none;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s var(--ease);
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    background: var(--brand-hover);
+    transform: scale(1.05);
+  }
+
+  .theme-toggle svg { width: 16px; height: 16px; stroke: currentColor; }
+
+  /* ============================================================
+     LAYOUT
+     ============================================================ */
+  main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 var(--s-6);
+  }
+
+  section {
+    padding: var(--s-9) 0 var(--s-7);
+    scroll-margin-top: var(--s-9);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-4);
+    margin-bottom: var(--s-7);
+  }
+
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--brand);
+    letter-spacing: 0.5px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    color: var(--text);
+  }
+
+  .section-sub {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-left: auto;
+    max-width: 380px;
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     HERO — Bento with spotlight
+     ============================================================ */
+  .hero {
+    padding-top: var(--s-10);
+    padding-bottom: var(--s-7);
+    position: relative;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--hero-grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hero-grid-color) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: 0 0;
+    mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px 6px 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-bottom: var(--s-5);
+    font-weight: 500;
+  }
+
+  .badge .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--success);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    letter-spacing: -3.5px;
+    line-height: 0.95;
+    color: var(--text);
+    margin-bottom: var(--s-4);
+  }
+
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .hero .lead {
+    font-size: clamp(17px, 2vw, 21px);
+    color: var(--text-muted);
+    max-width: 680px;
+    line-height: 1.55;
+    margin-bottom: var(--s-6);
+    font-weight: 400;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  /* ============================================================
+     BENTO — Snapshot Cards
+     ============================================================ */
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(96px, auto);
+    gap: var(--s-4);
+    margin-top: var(--s-7);
+  }
+
+  .bento-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--s-5);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  }
+
+  .bento-card:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .bento-card .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--s-2);
+  }
+
+  .bento-card .value {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+
+  .bento-card .value .unit {
+    font-size: 0.5em;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-left: 4px;
+  }
+
+  .bento-card .sub {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    margin-top: 4px;
+  }
+
+  /* Spans */
+  .b-2 { grid-column: span 2; }
+  .b-3 { grid-column: span 3; }
+  .b-4 { grid-column: span 4; }
+  .b-r2 { grid-row: span 2; }
+
+  /* Featured (gradient) card */
+  .bento-card.feature {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-hover) 100%);
+    color: #fff;
+    border-color: transparent;
+  }
+  .bento-card.feature .label,
+  .bento-card.feature .value,
+  .bento-card.feature .sub { color: #fff; }
+  .bento-card.feature .label { opacity: 0.8; }
+  .bento-card.feature .sub { opacity: 0.9; }
+
+  .bento-card.accent {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+  .bento-card.accent .value { color: var(--accent); }
+
+  /* Available card with pulse */
+  .available-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: var(--s-3);
+  }
+
+  .available-status .dot {
+    width: 10px;
+    height: 10px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  /* Contact links inside bento */
+  .bento-card .link-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    margin-top: var(--s-3);
+    font-size: 14px;
+    transition: color 0.2s;
+    word-break: break-all;
+  }
+
+  .bento-card .link-row:hover { color: var(--brand); }
+  .bento-card .link-row svg { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.6; }
+
+  /* ============================================================
+     BUTTONS
+     ============================================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+    border: 1px solid transparent;
+    font-family: var(--font-body);
+    white-space: nowrap;
+  }
+
+  .btn svg { width: 16px; height: 16px; }
+
+  .btn-primary {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--bg);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+  .btn-secondary:hover {
+    border-color: var(--text);
+    transform: translateY(-2px);
+  }
+
+  /* ============================================================
+     MARQUEE STACK (hero footer)
+     ============================================================ */
+  .marquee {
+    margin-top: var(--s-7);
+    padding: var(--s-4) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee::before, .marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .marquee::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg), transparent);
+  }
+  .marquee::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg), transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: var(--s-7);
+    animation: marquee 40s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .marquee-item {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .marquee-item .sep {
+    color: var(--brand);
+    margin-left: var(--s-7);
+    opacity: 0.4;
+  }
+
+  /* ============================================================
+     ABOUT
+     ============================================================ */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--s-5);
+  }
+
+  .about-text {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--s-6);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+
+  .about-text p + p { margin-top: var(--s-4); }
+
+  .about-text .highlight {
+    color: var(--brand);
+    font-weight: 600;
+  }
+
+  .about-aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .aside-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--s-5);
+    transition: border-color 0.25s var(--ease);
+  }
+
+  .aside-card:hover { border-color: var(--brand); }
+
+  .aside-card h4 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--s-3);
+  }
+
+  .aside-card .item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 14px;
+    color: var(--text);
+  }
+  .aside-card .item:last-child { border-bottom: none; }
+  .aside-card .item .v { color: var(--text-muted); font-family: var(--font-mono); font-size: 13px; }
+
+  /* ============================================================
+     SKILLS — Bento
+     ============================================================ */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--s-5);
+    transition: all 0.25s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .skill-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--s-4);
+  }
+
+  .skill-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    color: var(--brand);
+    flex-shrink: 0;
+  }
+
+  .skill-icon svg { width: 16px; height: 16px; }
+
+  .skill-card h3 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .chip {
+    background: var(--surface-2);
+    color: var(--text);
+    padding: 5px 11px;
+    border-radius: var(--radius-pill);
+    font-size: 12.5px;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    border: 1px solid var(--border);
+    transition: all 0.2s var(--ease);
+  }
+
+  .skill-card:hover .chip {
+    border-color: var(--border-strong);
+  }
+
+  .chip.featured {
+    background: var(--brand);
+    color: #fff;
+    border-color: var(--brand);
+  }
+
+  /* Skills card spans */
+  .skill-card.wide { grid-column: span 2; }
+
+  /* ============================================================
+     AI section — featured
+     ============================================================ */
+  .ai-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+  }
+
+  .ai-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--s-5);
+    transition: all 0.25s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--brand), var(--accent));
+    opacity: 0;
+    transition: opacity 0.25s var(--ease);
+  }
+
+  .ai-card:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .ai-card:hover::before { opacity: 1; }
+
+  .ai-card .num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--brand);
+    font-weight: 500;
+    margin-bottom: var(--s-3);
+  }
+
+  .ai-card h4 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--s-2);
+    letter-spacing: -0.3px;
+  }
+
+  .ai-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .ai-card.wide { grid-column: span 2; }
+
+  /* ============================================================
+     EXPERIENCE — Vertical timeline + cards
+     ============================================================ */
+  .timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+
+  /* Timeline group divider */
+  .exp-group-head {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    margin-top: var(--s-5);
+    margin-bottom: var(--s-2);
+  }
+  .exp-group-head:first-child { margin-top: 0; }
+
+  .exp-group-head .pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--brand);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 5px 12px;
+    border: 1px solid var(--brand);
+    border-radius: var(--radius-pill);
+    background: var(--accent-soft);
+    white-space: nowrap;
+  }
+
+  .exp-group-head .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-strong), transparent);
+  }
+
+  .exp-group-head .count {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-soft);
+    white-space: nowrap;
+  }
+
+  /* Type tag in card header */
+  .exp-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    margin-top: 6px;
+    background: var(--surface-2);
+  }
+  .exp-tag.dev {
+    color: var(--brand);
+    border-color: var(--brand);
+    background: var(--accent-soft);
+  }
+  .exp-tag::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .exp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--s-6);
+    transition: all 0.25s var(--ease);
+    position: relative;
+  }
+
+  .exp-card:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  .exp-card.featured {
+    border-color: var(--brand);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .exp-card.featured::before {
+    content: "Actual";
+    position: absolute;
+    top: -10px;
+    left: var(--s-6);
+    background: var(--brand);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    font-family: var(--font-mono);
+  }
+
+  .exp-meta {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--s-3);
+    margin-bottom: var(--s-3);
+    align-items: start;
+  }
+
+  .exp-role {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .exp-company {
+    color: var(--brand);
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .exp-dates {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: right;
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+
+  .exp-location {
+    color: var(--text-soft);
+    font-size: 13px;
+    margin-bottom: var(--s-4);
+  }
+
+  .exp-summary {
+    color: var(--text);
+    font-size: 14.5px;
+    line-height: 1.7;
+    margin-bottom: var(--s-5);
+  }
+
+  .exp-projects {
+    list-style: none;
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .exp-projects li {
+    padding: var(--s-3);
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+    border-left: 3px solid var(--brand);
+    transition: all 0.2s var(--ease);
+  }
+
+  .exp-projects li:hover {
+    background: var(--surface-3);
+    border-left-color: var(--accent);
+    transform: translateX(2px);
+  }
+
+  .exp-projects li strong {
+    color: var(--brand);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+    font-family: var(--font-display);
+    font-size: 14.5px;
+    letter-spacing: -0.2px;
+  }
+
+  /* ============================================================
+     EDUCATION
+     ============================================================ */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-4);
+    margin-bottom: var(--s-6);
+  }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--s-5);
+    transition: all 0.25s var(--ease);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+  }
+
+  .edu-card:hover {
+    border-color: var(--brand);
+    transform: translateY(-2px);
+  }
+
+  .edu-card .icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent-soft);
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: var(--brand);
+    margin-bottom: var(--s-2);
+  }
+
+  .edu-card .icon svg { width: 18px; height: 18px; }
+
+  .edu-card h3 {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+
+  .edu-card .institution {
+    color: var(--brand);
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .edu-card .year {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+  }
+
+  /* Certifications */
+  .cert-list {
+    list-style: none;
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .cert-list li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    transition: all 0.2s var(--ease);
+  }
+
+  .cert-list li.plain {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .cert-list li.plain::before {
+    content: "✓";
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .cert-list li.has-link {
+    transition: all 0.2s var(--ease);
+  }
+
+  .cert-list li.has-link a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    width: 100%;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .cert-list li.has-link a::before {
+    content: "✓";
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .cert-list li.has-link:hover {
+    border-color: var(--brand);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cert-list li.has-link:hover a { color: var(--brand); }
+
+  .cert-list .ext-icon {
+    width: 14px;
+    height: 14px;
+    margin-left: auto;
+    opacity: 0.55;
+    transition: opacity 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .cert-list li.has-link:hover .ext-icon {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+
+  /* ============================================================
+     FOOTER / Contact
+     ============================================================ */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: var(--s-9) var(--s-6) var(--s-5);
+    margin-top: var(--s-9);
+  }
+
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .footer-cta {
+    text-align: center;
+    margin-bottom: var(--s-7);
+  }
+
+  .footer-cta h2 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    letter-spacing: -2.5px;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: var(--s-4);
+  }
+
+  .footer-cta h2 .accent {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .footer-cta p {
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin: 0 auto var(--s-6);
+    line-height: 1.5;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  .footer-meta {
+    border-top: 1px solid var(--border);
+    padding-top: var(--s-5);
+    margin-top: var(--s-7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    font-size: 12.5px;
+    color: var(--text-soft);
+    font-family: var(--font-mono);
+  }
+
+  /* ============================================================
+     REVEAL ANIMATIONS
+     ============================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger > * { transition-delay: 0s; }
+  .stagger.visible > *:nth-child(1) { transition-delay: 0.05s; }
+  .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+  .stagger.visible > *:nth-child(3) { transition-delay: 0.15s; }
+  .stagger.visible > *:nth-child(4) { transition-delay: 0.2s; }
+  .stagger.visible > *:nth-child(5) { transition-delay: 0.25s; }
+  .stagger.visible > *:nth-child(6) { transition-delay: 0.3s; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 900px) {
+    .bento { grid-template-columns: repeat(2, 1fr); }
+    .b-3, .b-4 { grid-column: span 2; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .skill-card.wide { grid-column: span 2; }
+    .ai-grid { grid-template-columns: repeat(2, 1fr); }
+    .ai-card.wide { grid-column: span 2; }
+    .about-grid { grid-template-columns: 1fr; }
+    .section-sub { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .bento { grid-template-columns: 1fr; }
+    .b-2, .b-3, .b-4 { grid-column: span 1; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .skill-card.wide { grid-column: span 1; }
+    .ai-grid { grid-template-columns: 1fr; }
+    .ai-card.wide { grid-column: span 1; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .exp-meta { grid-template-columns: 1fr; }
+    .exp-dates { text-align: left; }
+    main { padding: 0 var(--s-4); }
+    section { padding: var(--s-7) 0 var(--s-5); }
+    .hero { padding-top: var(--s-9); }
+    nav { padding: 6px 6px 6px 14px; gap: var(--s-2); }
+    .nav-logo { font-size: 13px; }
+  }
+
+  /* ============================================================
+     PRINT
+     ============================================================ */
+  @media print {
+    nav, .marquee, .theme-toggle, footer .footer-cta, footer .footer-links { display: none; }
+    body { background: white; color: black; }
+    .skill-card, .exp-card, .edu-card, .ai-card, .about-text, .aside-card, .bento-card {
+      box-shadow: none !important;
+      border: 1px solid #ccc !important;
+      background: white !important;
+      color: black !important;
+      page-break-inside: avoid;
+    }
+    section { padding: 20px 0; }
+    .hero { padding: 30px 0; }
+    .hero h1 .accent { -webkit-text-fill-color: black; color: black; }
+  }
+
+  /* Focus visible (a11y) */
+  *:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav role="navigation" aria-label="Principal">
+  <a href="#top" class="nav-logo"><span class="dot" aria-hidden="true"></span>Moisés Lagos</a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#skills">Stack</a></li>
+    <li><a href="#ia">IA</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="/proyectos">Proyectos</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
+  </button>
+</nav>
+
+<main id="top">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+
+      <span class="badge">
+        <span class="dot" aria-hidden="true"></span>
+        Disponible para nuevas oportunidades
+      </span>
+
+      <h1>
+        Moisés Lagos.<br>
+        <span class="accent">Analista Programador.</span>
+      </h1>
+
+      <p class="lead">
+        Analista programador con foco en Oracle, integraciones empresariales y
+        migración de datos a Google Cloud. Disfruto los problemas donde la
+        trazabilidad y los datos que cuadran son innegociables.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="mailto:moises.lagos.f@gmail.com" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Contactar
+        </a>
+        <a href="cv-moises-lagos.docx" class="btn btn-secondary" download="Cv-Moises-Lagos-2026.docx">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Descargar CV
+        </a>
+      </div>
+
+      <!-- ===== Bento Snapshot ===== -->
+      <div class="bento stagger reveal">
+        <div class="bento-card feature b-2">
+          <div class="label">Rol actual</div>
+          <div class="value" style="font-size:clamp(20px,2.4vw,26px);">Analista Programador</div>
+          <div class="sub">Oracle &amp; Integraciones · Compañías CIC S.A.</div>
+          <div class="available-status">
+            <span class="dot" aria-hidden="true"></span>
+            <span style="font-size:13px;">En activo desde Abril 2024</span>
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <div class="label">Desarrollo full-time</div>
+          <div class="value">2+<span class="unit">años</span></div>
+          <div class="sub">12+ en tech (incl. operaciones)</div>
+        </div>
+
+        <div class="bento-card accent">
+          <div class="label">Ubicación</div>
+          <div class="value" style="font-size:22px;">Santiago, CL</div>
+          <div class="sub">UTC-3 · Híbrido / Remoto</div>
+        </div>
+
+        <div class="bento-card">
+          <div class="label">Stack core</div>
+          <div class="value" style="font-size:18px; font-family:var(--font-mono);">PL/SQL · OIC</div>
+          <div class="sub">+ BigQuery · Angular</div>
+        </div>
+
+        <div class="bento-card b-2">
+          <div class="label">Contacto directo</div>
+          <a href="mailto:moises.lagos.f@gmail.com" class="link-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            moises.lagos.f@gmail.com
+          </a>
+          <a href="tel:+56959789526" class="link-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            +56 9 5978 9526
+          </a>
+        </div>
+
+        <div class="bento-card">
+          <div class="label">GitHub</div>
+          <a href="#" data-placeholder="github" class="link-row" style="margin-top:var(--s-2);">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+            Completar
+          </a>
+        </div>
+
+        <div class="bento-card">
+          <div class="label">LinkedIn</div>
+          <a href="#" data-placeholder="linkedin" class="link-row" style="margin-top:var(--s-2);">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            Completar
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== Marquee Stack ===== -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-item">PL/SQL<span class="sep">●</span></span>
+          <span class="marquee-item">Oracle EBS 12.2<span class="sep">●</span></span>
+          <span class="marquee-item">Oracle Integration Cloud<span class="sep">●</span></span>
+          <span class="marquee-item">BigQuery<span class="sep">●</span></span>
+          <span class="marquee-item">Looker Studio<span class="sep">●</span></span>
+          <span class="marquee-item">Angular 20<span class="sep">●</span></span>
+          <span class="marquee-item">Ionic 8<span class="sep">●</span></span>
+          <span class="marquee-item">Python · FastAPI<span class="sep">●</span></span>
+          <span class="marquee-item">Java · Spring Boot<span class="sep">●</span></span>
+          <span class="marquee-item">Docker · GitLab CI<span class="sep">●</span></span>
+          <span class="marquee-item">Claude Code<span class="sep">●</span></span>
+          <!-- Duplicate for seamless loop -->
+          <span class="marquee-item">PL/SQL<span class="sep">●</span></span>
+          <span class="marquee-item">Oracle EBS 12.2<span class="sep">●</span></span>
+          <span class="marquee-item">Oracle Integration Cloud<span class="sep">●</span></span>
+          <span class="marquee-item">BigQuery<span class="sep">●</span></span>
+          <span class="marquee-item">Looker Studio<span class="sep">●</span></span>
+          <span class="marquee-item">Angular 20<span class="sep">●</span></span>
+          <span class="marquee-item">Ionic 8<span class="sep">●</span></span>
+          <span class="marquee-item">Python · FastAPI<span class="sep">●</span></span>
+          <span class="marquee-item">Java · Spring Boot<span class="sep">●</span></span>
+          <span class="marquee-item">Docker · GitLab CI<span class="sep">●</span></span>
+          <span class="marquee-item">Claude Code<span class="sep">●</span></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SOBRE MÍ
+       ============================================================ -->
+  <section id="sobre-mi" class="reveal">
+    <div class="section-head">
+      <span class="section-num">01 /</span>
+      <h2 class="section-title">Sobre mí.</h2>
+      <p class="section-sub">El perfil mixto entre operaciones y desarrollo full-time es lo que aporto a un equipo.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Analista programador con foco en <span class="highlight">Oracle e integraciones empresariales</span>.
+          A diario trabajo con PL/SQL, Oracle Integration Cloud y consumo de APIs en módulos AR
+          para automatizar procesos de finanzas, logística y conciliación.
+        </p>
+        <p>
+          Complemento esa experiencia con desarrollo backend en Python y Java, y con proyectos
+          propios donde profundizo en <span class="highlight">arquitectura limpia y seguridad</span>.
+          Me interesan los problemas donde la trazabilidad, la atomicidad y los datos que cuadran
+          son innegociables.
+        </p>
+        <p>
+          Vengo de un perfil mixto: <span class="highlight">doce años en operaciones y soporte
+          técnico</span> antes de pasar full-time a desarrollo, donde llevo
+          <span class="highlight">dos años activos</span>. Esa trayectoria me da algo que suelo
+          aprovechar: hablo el idioma del área funcional y el del DBA en la misma reunión.
+        </p>
+      </div>
+
+      <aside class="about-aside">
+        <div class="aside-card">
+          <h4>Foco actual</h4>
+          <div class="item"><span>Oracle EBS</span><span class="v">12.2</span></div>
+          <div class="item"><span>BigQuery + Looker</span><span class="v">migración</span></div>
+          <div class="item"><span>Integraciones OIC</span><span class="v">REST · SOAP</span></div>
+          <div class="item"><span>Frontend BOPIS</span><span class="v">Angular 20</span></div>
+        </div>
+
+        <div class="aside-card">
+          <h4>En aprendizaje</h4>
+          <div class="item"><span>Kubernetes</span><span class="v">activo</span></div>
+          <div class="item"><span>Terraform</span><span class="v">activo</span></div>
+          <div class="item"><span>Go</span><span class="v">activo</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS — Bento
+       ============================================================ -->
+  <section id="skills" class="reveal">
+    <div class="section-head">
+      <span class="section-num">02 /</span>
+      <h2 class="section-title">Stack técnico.</h2>
+      <p class="section-sub">Skills respaldadas por proyectos en producción, no solo en libros.</p>
+    </div>
+
+    <div class="skills-grid stagger reveal">
+
+      <div class="skill-card wide">
+        <div class="skill-card-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/>
+            </svg>
+          </div>
+          <h3>Oracle &amp; Bases de datos</h3>
+        </div>
+        <div class="chips">
+          <span class="chip featured">PL/SQL avanzado</span>
+          <span class="chip featured">Oracle Integration Cloud</span>
+          <span class="chip">Oracle EBS 12.2</span>
+          <span class="chip">AR · GL · FND · ONT · INV</span>
+          <span class="chip">SQL Developer</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">MySQL</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+            </svg>
+          </div>
+          <h3>Cloud &amp; Data</h3>
+        </div>
+        <div class="chips">
+          <span class="chip featured">BigQuery</span>
+          <span class="chip featured">Looker Studio</span>
+          <span class="chip">Google Cloud</span>
+          <span class="chip">Medallion</span>
+          <span class="chip">Modelado dimensional</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <h3>Backend</h3>
+        </div>
+        <div class="chips">
+          <span class="chip">Java</span>
+          <span class="chip">Spring Boot</span>
+          <span class="chip">Python</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Django</span>
+          <span class="chip">Node.js</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3>Frontend</h3>
+        </div>
+        <div class="chips">
+          <span class="chip featured">Angular 20</span>
+          <span class="chip">Ionic 8</span>
+          <span class="chip">Capacitor</span>
+          <span class="chip">React + TS</span>
+          <span class="chip">VueJS</span>
+          <span class="chip">Tailwind</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </div>
+          <h3>Integraciones &amp; APIs</h3>
+        </div>
+        <div class="chips">
+          <span class="chip">REST</span>
+          <span class="chip">SOAP</span>
+          <span class="chip">OAuth / SSO</span>
+          <span class="chip">XML / XSD</span>
+          <span class="chip">BI Publisher</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <h3>Arquitectura</h3>
+        </div>
+        <div class="chips">
+          <span class="chip">Clean Architecture</span>
+          <span class="chip">SOLID (en PL/SQL)</span>
+          <span class="chip">JWT</span>
+          <span class="chip">Idempotencia</span>
+        </div>
+      </div>
+
+      <div class="skill-card wide">
+        <div class="skill-card-head">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <h3>DevOps &amp; herramientas</h3>
+        </div>
+        <div class="chips">
+          <span class="chip">Git</span>
+          <span class="chip featured">GitLab CI/CD</span>
+          <span class="chip featured">Docker</span>
+          <span class="chip">Docker Compose</span>
+          <span class="chip">Docker Swarm</span>
+          <span class="chip">nginx</span>
+          <span class="chip">Kubernetes (en aprendizaje)</span>
+          <span class="chip">Terraform (en aprendizaje)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       AI section
+       ============================================================ -->
+  <section id="ia" class="ai-section reveal">
+    <div class="section-head">
+      <span class="section-num">03 /</span>
+      <h2 class="section-title">Inteligencia <span style="background:linear-gradient(135deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Artificial.</span></h2>
+      <p class="section-sub">Uso diario de Claude (Anthropic) como copiloto y motor para construir herramientas internas.</p>
+    </div>
+
+    <div class="ai-grid stagger reveal">
+      <div class="ai-card wide">
+        <div class="num">01</div>
+        <h4>Claude Code en flujo diario</h4>
+        <p>Desarrollo, refactors, debugging y documentación. Configuro proyectos con archivos CLAUDE.md (especificaciones vivas que guían al agente), permisos granulares y memoria persistente por proyecto.</p>
+      </div>
+      <div class="ai-card">
+        <div class="num">02</div>
+        <h4>Skills personalizadas</h4>
+        <p>Caso real: skill de 7 fases para construir un sistema DTE chileno — modelado, XML, firma XMLDSIG, SOAP con SII y despliegue.</p>
+      </div>
+      <div class="ai-card">
+        <div class="num">03</div>
+        <h4>Skills de terceros</h4>
+        <p>Instalación y adaptación de skills publicadas por la comunidad, ajustadas a las reglas del proyecto.</p>
+      </div>
+      <div class="ai-card">
+        <div class="num">04</div>
+        <h4>Servidores MCP</h4>
+        <p>Configuración de Model Context Protocol para extender Claude con contexto externo (archivos, herramientas, navegación).</p>
+      </div>
+      <div class="ai-card">
+        <div class="num">05</div>
+        <h4>Prompt engineering</h4>
+        <p>Instrucciones por roles, control de output, manejo de contexto largo y delegación a subagentes en paralelo.</p>
+      </div>
+      <div class="ai-card">
+        <div class="num">06</div>
+        <h4>Complemento con ChatGPT</h4>
+        <p>Uso puntual para validación cruzada de soluciones y análisis comparativo entre modelos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCIA
+       ============================================================ -->
+  <section id="experiencia" class="reveal">
+    <div class="section-head">
+      <span class="section-num">04 /</span>
+      <h2 class="section-title">Experiencia.</h2>
+      <p class="section-sub">2+ años en desarrollo full-time. Antes, 12+ años en operaciones y soporte técnico.</p>
+    </div>
+
+    <div class="timeline">
+
+      <!-- ───── Desarrollo ───── -->
+      <div class="exp-group-head">
+        <span class="pill">Desarrollo</span>
+        <span class="line"></span>
+        <span class="count">2+ años full-time</span>
+      </div>
+
+      <article class="exp-card featured">
+        <div class="exp-meta">
+          <div>
+            <h3 class="exp-role">Analista Programador</h3>
+            <div class="exp-company">Compañías CIC S.A.</div>
+            <span class="exp-tag dev">Desarrollo</span>
+          </div>
+          <div class="exp-dates">Abr 2024 → Presente</div>
+        </div>
+        <div class="exp-location">Santiago, Chile · Modalidad híbrida</div>
+        <p class="exp-summary">
+          Implementación de soluciones técnicas en finanzas, logística, omnicanalidad y reporting.
+          Combina PL/SQL sobre Oracle EBS 12.2, integraciones con Oracle Integration Cloud (OIC),
+          migración de datos a Google Cloud (BigQuery + Looker Studio) y desarrollo de aplicaciones
+          de soporte. Foco transversal: automatización, idempotencia y trazabilidad.
+        </p>
+        <ul class="exp-projects">
+          <li>
+            <strong>Migración del reporting a BigQuery + Looker Studio</strong>
+            Re-implementación de scripts Qlik Sense como vistas SQL en arquitectura medallion
+            (bronze → silver → gold), con paridad al centavo contra el origen Oracle EBS.
+            Identifiqué y corregí un bug de timezone que afectaba al 98 % de las filas.
+          </li>
+          <li>
+            <strong>Centralización contable de venta POS a GL</strong>
+            Diseño e implementación end-to-end de un package PL/SQL que centraliza la venta diaria
+            hacia GL_INTERFACE como journals balanceados. Idempotencia con doble barrera, logger
+            transaccional con PRAGMA AUTONOMOUS_TRANSACTION y aplicación de SOLID en PL/SQL.
+          </li>
+          <li>
+            <strong>Conciliación bancaria Transbank (crédito y débito)</strong>
+            Diagnóstico de causa raíz y rediseño de procedures PL/SQL heredados extensos
+            (~1.700 líneas cada uno) para el cuadre diario contra cuentas por cobrar (módulo AR),
+            con manejo de multi-cuotas y write-off automático.
+          </li>
+          <li>
+            <strong>Guía de Despacho electrónica (Res. Exenta SII N° 154)</strong>
+            Modificación del package PL/SQL de emisión de DTE tipo 52 para incorporar los seis
+            campos obligatorios al XML, parche del XSD oficial y visor HTML/JS standalone.
+          </li>
+          <li>
+            <strong>Conciliación de marketplace</strong>
+            Sistema sobre Oracle Integration Cloud (OIC) que integra cartolas de liquidación y
+            ventas con los módulos de Accounts Receivable, consumiendo APIs de Oracle.
+          </li>
+          <li>
+            <strong>SPA de orquestación BOPIS</strong>
+            Frontend principal (~85 % de los commits) en Angular 20 + Ionic 8 + Capacitor 7.
+            Flujo end-to-end de preparación de pedidos, SSO OAuth e integración con flujos REST
+            de OIC. Despliegue: Dockerfiles multi-stage + GitLab CI a Docker Swarm + nginx reverse proxy.
+          </li>
+          <li>
+            <strong>Impresión automatizada de etiquetas logísticas</strong>
+            Procedimiento que aplica lógica de empaquetado y genera códigos DUN14 en archivos PRN
+            para impresoras Zebra.
+          </li>
+        </ul>
+      </article>
+
+      <article class="exp-card">
+        <div class="exp-meta">
+          <div>
+            <h3 class="exp-role">Desarrollador Freelance</h3>
+            <div class="exp-company">Eleva Dev</div>
+            <span class="exp-tag dev">Desarrollo</span>
+          </div>
+          <div class="exp-dates">Feb 2022 → Jul 2022</div>
+        </div>
+        <div class="exp-location">Trabajo remoto, en paralelo a Xerox</div>
+        <p class="exp-summary">
+          Desarrollo full-stack de aplicaciones a medida para clientes de la consultora,
+          asumiendo backend y frontend según la pieza.
+        </p>
+        <ul class="exp-projects">
+          <li><strong>Sistema de envío de paquetes</strong>Node.js + VueJS: diseño de endpoints e importación/exportación de datos.</li>
+          <li><strong>Gestión de tiempo y control de inventario</strong>Calendario interactivo en VueJS + Django.</li>
+        </ul>
+      </article>
+
+      <!-- ───── Operaciones y soporte ───── -->
+      <div class="exp-group-head">
+        <span class="pill" style="color:var(--text-muted); border-color:var(--border-strong); background:var(--surface-2);">Operaciones &amp; soporte</span>
+        <span class="line"></span>
+        <span class="count">12+ años</span>
+      </div>
+
+      <article class="exp-card">
+        <div class="exp-meta">
+          <div>
+            <h3 class="exp-role">Técnico de Operaciones</h3>
+            <div class="exp-company">Xerox de Chile</div>
+            <span class="exp-tag">Operaciones</span>
+          </div>
+          <div class="exp-dates">Oct 2013 → Abr 2024</div>
+        </div>
+        <div class="exp-location">Santiago, Chile</div>
+        <p class="exp-summary">
+          Operación y soporte de servicios de impresión gestionada para clientes corporativos,
+          asegurando continuidad operativa y calidad de servicio.
+        </p>
+        <ul class="exp-projects">
+          <li><strong>Soporte a usuarios finales</strong>Atención técnica y resolución de incidencias.</li>
+          <li><strong>Administración de equipos</strong>Configuración en la plataforma SafeQ con flujos de impresión segura.</li>
+          <li><strong>Reportería para facturación</strong>Generación de reportes operativos para respaldar el proceso de facturación.</li>
+        </ul>
+      </article>
+
+      <article class="exp-card">
+        <div class="exp-meta">
+          <div>
+            <h3 class="exp-role">Técnico Informático</h3>
+            <div class="exp-company">Comges</div>
+            <span class="exp-tag">Soporte IT</span>
+          </div>
+          <div class="exp-dates">Feb 2012 → Ene 2013</div>
+        </div>
+        <div class="exp-location">Santiago, Chile</div>
+        <p class="exp-summary">Soporte técnico interno a usuarios de la compañía.</p>
+        <ul class="exp-projects">
+          <li><strong>Soporte interno</strong>Resolución de incidencias y configuración de estaciones de trabajo.</li>
+          <li><strong>Active Directory</strong>Administración de cuentas y políticas.</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROYECTOS PERSONALES
+       ============================================================ -->
+  <section id="proyectos" class="reveal">
+    <div class="section-head">
+      <span class="section-num">05 /</span>
+      <h2 class="section-title">Proyectos personales.</h2>
+      <p class="section-sub">Construir cosas reales en mi tiempo libre es como me mantengo afilado.</p>
+    </div>
+
+    <article class="exp-card featured" style="overflow:hidden;">
+      <div class="exp-meta">
+        <div>
+          <h3 class="exp-role" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            OmniFlow
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--warning); background:rgba(245,158,11,0.12); border:1px solid var(--warning); padding:3px 10px; border-radius:var(--radius-pill); font-weight:600; letter-spacing:0.5px; text-transform:uppercase;">● En construcción</span>
+          </h3>
+          <div class="exp-company">Sistema POS multi-sucursal para retail chileno</div>
+          <span class="exp-tag dev">Proyecto personal · Solo author</span>
+        </div>
+        <div class="exp-dates">Jun 2026 → Activo</div>
+      </div>
+
+      <p class="exp-summary">
+        Sistema de Punto de Venta multi-sucursal con módulo financiero integrado, diseñado bajo
+        <strong style="color:var(--brand);">Clean Architecture</strong> estricta, tipado completo
+        (<code style="font-family:var(--font-mono); font-size:0.9em; color:var(--accent);">mypy --strict</code>)
+        y cobertura de tests amplia. Demuestra arquitectura de software para sistemas transaccionales
+        reales: concurrencia con locks pesimistas, atomicidad multi-entidad vía Unit of Work,
+        RBAC granular, audit trail inmutable, FEFO en perecibles y rotación de tokens JWT con detección de replay.
+      </p>
+
+      <!-- Stats bento -->
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s-3); margin:var(--s-5) 0;">
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:var(--s-4); text-align:center;">
+          <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">70+</div>
+          <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">commits</div>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:var(--s-4); text-align:center;">
+          <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">286</div>
+          <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">tests backend</div>
+        </div>
+        <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:var(--s-4); text-align:center;">
+          <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">162</div>
+          <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">tests frontend</div>
+        </div>
+        <div style="background:var(--accent-soft); border:1px solid var(--accent); border-radius:var(--radius-md); padding:var(--s-4); text-align:center;">
+          <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--accent); letter-spacing:-1px; line-height:1;">100<span style="font-size:0.6em;">%</span></div>
+          <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">tipado mypy</div>
+        </div>
+      </div>
+
+      <ul class="exp-projects">
+        <li>
+          <strong>10 módulos en producción</strong>
+          Autenticación con JWT RS256 + rotación, Administración con RBAC granular, Sucursales y Cajas,
+          Inventario con FEFO, Clientes, POS atómico con pagos mixtos, Caja con arqueo, Reservas de stock,
+          Audit log viewer. Todos con frontend y backend completos.
+        </li>
+        <li>
+          <strong>Stack moderno</strong>
+          Backend: Python 3.13 + FastAPI + SQLAlchemy 2.x + PostgreSQL 16 + Alembic.
+          Frontend: React 18 + Vite + TypeScript estricto + Zustand + React Hook Form + Zod.
+          Infraestructura: Docker Compose.
+        </li>
+        <li>
+          <strong>Decisiones técnicas notables</strong>
+          <code style="font-family:var(--font-mono); font-size:0.9em; color:var(--accent);">SELECT FOR UPDATE</code>
+          pesimista sobre stock y folios SII, Unit of Work envolviendo cada caso de uso,
+          refresh tokens persistidos con rotación y detección de replay, Argon2id, audit log con before/after JSON,
+          IVA 19% con redondeo back-out y validación de RUT chileno.
+        </li>
+      </ul>
+
+      <div style="display:flex; gap:var(--s-3); margin-top:var(--s-5); flex-wrap:wrap; align-items:center;">
+        <a href="https://omnifow-seven.vercel.app/login"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-primary"
+           title="Abre el login del demo en vivo">
+          <span style="display:inline-block; width:8px; height:8px; background:#10B981; border-radius:50%; box-shadow:0 0 0 0 rgba(16,185,129,0.7); animation:pulse 1.8s ease-in-out infinite; flex-shrink:0;" aria-hidden="true"></span>
+          Probar demo en vivo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 17L17 7M8 7h9v9"/>
+          </svg>
+        </a>
+        <a href="/proyectos" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+          Ver detalle completo
+        </a>
+        <a href="https://github.com/MoisesLagos123/omnifow" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+      <p style="font-family:var(--font-mono); font-size:12px; color:var(--text-soft); margin-top:var(--s-4); line-height:1.6;">
+        <span style="color:var(--text-muted);">Credenciales demo:</span>
+        <code style="background:var(--surface-2); border:1px solid var(--border); color:var(--text); padding:3px 8px; border-radius:6px; font-family:var(--font-mono);">admin@minierp.cl</code>
+        <code style="background:var(--surface-2); border:1px solid var(--border); color:var(--text); padding:3px 8px; border-radius:6px; font-family:var(--font-mono); margin-left:4px;">Admin12345!</code>
+      </p>
+    </article>
+  </section>
+
+  <!-- ============================================================
+       FORMACIÓN
+       ============================================================ -->
+  <section id="formacion" class="reveal">
+    <div class="section-head">
+      <span class="section-num">06 /</span>
+      <h2 class="section-title">Formación.</h2>
+      <p class="section-sub">Educación formal + certificaciones verificables en Drive.</p>
+    </div>
+
+    <div class="edu-grid stagger reveal">
+      <div class="edu-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <h3>Analista Programador Computacional</h3>
+        <div class="institution">Duoc UC</div>
+        <div class="year">2021</div>
+      </div>
+      <div class="edu-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>Técnico Electrónico Nivel Medio</h3>
+        <div class="institution">Liceo Polivalente</div>
+        <div class="year">2011</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-display); font-size:20px; font-weight:600; margin-top:var(--s-7); margin-bottom:var(--s-4); color:var(--text); letter-spacing:-0.5px;">
+      Certificaciones
+    </h3>
+    <ul class="cert-list stagger reveal">
+      <li class="has-link">
+        <a href="https://drive.google.com/file/d/11ZaFNGqbwpYGdS9lnY8ieM10JBMkO1-p/view?pli=1"
+           target="_blank" rel="noopener noreferrer"
+           title="Ver certificado en Drive">
+          Desarrollo de Aplicaciones Full Stack Java Trainee — 2023
+          <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </li>
+      <li class="has-link">
+        <a href="https://drive.google.com/file/d/1e21B9UB0qOf2x3LG1WGPx8MagrQmV8fz/view"
+           target="_blank" rel="noopener noreferrer"
+           title="Ver certificado en Drive">
+          Herramientas para el Desarrollo de Competencias de Calidad de Servicio y Atención al Cliente — 2015
+          <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </li>
+      <li class="has-link">
+        <a href="https://drive.google.com/file/d/15819hgdHdfoB_r6Hd9cBXIFHP71LCRqY/view"
+           target="_blank" rel="noopener noreferrer"
+           title="Ver certificado en Drive">
+          Excel Básico — 2015
+          <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer id="contacto">
+  <div class="footer-inner">
+    <div class="footer-cta">
+      <h2>¿Conversamos?<br><span class="accent">Te respondo dentro de 24 h.</span></h2>
+      <p>
+        Oportunidades en Backend, Oracle, Integraciones y Data — abierto a remoto, híbrido y presencial.
+      </p>
+      <div class="footer-links">
+        <a href="mailto:moises.lagos.f@gmail.com" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          moises.lagos.f@gmail.com
+        </a>
+        <a href="tel:+56959789526" class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          +56 9 5978 9526
+        </a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 · Moisés Lagos F. · Santiago, Chile</span>
+      <span>HTML + CSS + JS vanilla · Sin dependencias · Bento + Swiss + OLED</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Theme toggle =====
+  (function() {
+    var btn = document.getElementById('themeToggle');
+    var icon = document.getElementById('themeIcon');
+    var sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+    var moon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+    function updateUI() {
+      var t = document.documentElement.getAttribute('data-theme');
+      icon.innerHTML = t === 'dark' ? sun : moon;
+    }
+    btn.addEventListener('click', function() {
+      var cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateUI();
+    });
+    updateUI();
+  })();
+
+  // ===== Scroll reveal =====
+  (function() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  })();
+
+  // ===== Easter egg =====
+  console.log('%cMoisés Lagos F.', 'font-family:monospace;font-size:28px;font-weight:bold;color:#3B82F6;letter-spacing:-1px;padding:8px 0;');
+  console.log('%c  Analista Programador · Oracle & Integraciones', 'font-family:monospace;font-size:13px;color:#A1A1AA;');
+  console.log('%c  ─────────────────────────────────────────────', 'font-family:monospace;font-size:12px;color:#27272A;');
+  console.log('%c  ¿Te interesa lo que viste? Escríbeme:', 'font-family:monospace;font-size:13px;color:#A1A1AA;');
+  console.log('%c  → moises.lagos.f@gmail.com', 'font-family:monospace;font-size:14px;color:#22D3EE;font-weight:bold;');
+</script>
+
+</body>
+</html>
