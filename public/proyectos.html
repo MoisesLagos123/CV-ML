@@ -836,6 +836,69 @@
         </div>
       </div>
 
+      <!-- Glosario de patrones -->
+      <div class="ps-block">
+        <h3><span class="num">06</span> Glosario de patrones</h3>
+        <div class="decisions">
+          <div class="decision">
+            <strong>Clean Architecture</strong>
+            <p>Diseño en capas (dominio → aplicación → infraestructura) donde las dependencias siempre apuntan hacia el dominio. La lógica de negocio no conoce la base de datos ni el framework, así que se puede testear y cambiar la infraestructura sin tocarla.</p>
+          </div>
+          <div class="decision">
+            <strong>SOLID</strong>
+            <p>Cinco principios de diseño orientado a objetos: responsabilidad única, abierto/cerrado, sustitución de Liskov, segregación de interfaces e inversión de dependencias. Guían hacia código desacoplado y mantenible.</p>
+          </div>
+          <div class="decision">
+            <strong>Unit of Work (UoW)</strong>
+            <p>Patrón que agrupa todas las operaciones de base de datos de una operación de negocio en una sola transacción: o se confirman todas (commit) o no se aplica ninguna (rollback). Garantiza atomicidad: nunca queda media venta registrada.</p>
+          </div>
+          <div class="decision">
+            <strong>Repository pattern</strong>
+            <p>Abstrae el acceso a datos detrás de una interfaz. El dominio pide "guardar" o "buscar" sin saber si detrás hay PostgreSQL, otra BD o memoria. Permite testear el dominio sin base de datos real.</p>
+          </div>
+          <div class="decision">
+            <strong>RBAC (Role-Based Access Control)</strong>
+            <p>Control de acceso basado en roles: los permisos se asignan a perfiles y los usuarios heredan los permisos de su perfil, en vez de asignarlos uno a uno. "Granular" significa que el permiso es a nivel de acción concreta (<code>recurso.accion</code>), no de pantallas completas.</p>
+          </div>
+          <div class="decision">
+            <strong>Lock pesimista vs. optimista</strong>
+            <p>El lock <strong>pesimista</strong> (<code>SELECT FOR UPDATE</code>) bloquea la fila en la BD antes de modificarla, asumiendo que habrá conflicto; otra transacción debe esperar. El <strong>optimista</strong> no bloquea: deja avanzar y reintenta si detecta que el dato cambió. Usé pesimista en stock, folios y caja porque el conflicto es real y caro.</p>
+          </div>
+          <div class="decision">
+            <strong>Audit trail</strong>
+            <p>Registro inmutable (solo se agrega, nunca se edita ni borra) de quién hizo qué, cuándo y con qué resultado, guardando el estado antes/después. Sirve para trazabilidad, depuración y cumplimiento.</p>
+          </div>
+          <div class="decision">
+            <strong>FEFO (First Expired, First Out)</strong>
+            <p>"Primero en vencer, primero en salir": al vender, el sistema descuenta primero el lote con fecha de vencimiento más próxima. Reduce las pérdidas por caducidad en productos perecibles.</p>
+          </div>
+          <div class="decision">
+            <strong>JWT RS256</strong>
+            <p>JSON Web Token firmado con RSA + SHA-256 (criptografía asimétrica): el servidor firma con clave privada y cualquier servicio valida con la clave pública. Más seguro que HS256 (clave compartida) cuando varios servicios verifican el token.</p>
+          </div>
+          <div class="decision">
+            <strong>Argon2id</strong>
+            <p>Algoritmo moderno de hashing de contraseñas, ganador del Password Hashing Competition. Es deliberadamente costoso en memoria y CPU para resistir ataques de fuerza bruta con GPU; la variante <code>id</code> combina defensa contra GPU y side-channels.</p>
+          </div>
+          <div class="decision">
+            <strong>Rotación de refresh tokens + detección de replay</strong>
+            <p>Cada vez que se usa un refresh token se emite uno nuevo y el anterior se revoca. Si llega uno ya revocado se asume robo (replay) y se invalidan todas las sesiones de ese usuario. "Replay" = reutilizar un token/credencial que ya fue consumido.</p>
+          </div>
+          <div class="decision">
+            <strong>Single-flight</strong>
+            <p>Cuando varias peticiones disparan el mismo refresh al mismo tiempo, se ejecuta una sola y las demás esperan ese resultado. Evita la "tormenta" de múltiples refresh concurrentes tras un 401.</p>
+          </div>
+          <div class="decision">
+            <strong>Defense in depth</strong>
+            <p>Seguridad en capas: el permiso se valida en el backend (en cada caso de uso), no solo ocultando el botón en la UI. Si una capa falla, otra sigue protegiendo.</p>
+          </div>
+          <div class="decision">
+            <strong>IVA back-out (redondeo)</strong>
+            <p>Para precios "IVA incluido", el IVA se extrae desde el bruto con <code>iva = round(bruto · 19 / 119)</code> en lugar de calcularlo hacia adelante. Es la fórmula correcta del SII y evita el descuadre clásico de $1.</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Why -->
       <div class="ps-why">
         <h3>¿Por qué lo construyo?</h3>

@@ -1508,7 +1508,7 @@
     <div class="section-head">
       <span class="section-num">01 /</span>
       <h2 class="section-title">Sobre mí.</h2>
-      <p class="section-sub">El perfil mixto entre operaciones y desarrollo full-time es lo que aporto a un equipo.</p>
+      <p class="section-sub">Conocimiento funcional en finanzas y dominio técnico de Oracle: entiendo el negocio y construyo la solución.</p>
     </div>
 
     <div class="about-grid">
@@ -1538,14 +1538,13 @@
           <div class="item"><span>Oracle EBS</span><span class="v">12.2</span></div>
           <div class="item"><span>BigQuery + Looker</span><span class="v">migración</span></div>
           <div class="item"><span>Integraciones OIC</span><span class="v">REST · SOAP</span></div>
-          <div class="item"><span>Frontend BOPIS</span><span class="v">Angular 20</span></div>
+          <div class="item"><span>OmniFlow</span><span class="v">proyecto</span></div>
         </div>
 
         <div class="aside-card">
           <h4>En aprendizaje</h4>
-          <div class="item"><span>Kubernetes</span><span class="v">activo</span></div>
-          <div class="item"><span>Terraform</span><span class="v">activo</span></div>
-          <div class="item"><span>Go</span><span class="v">activo</span></div>
+          <div class="item"><span>Agentes IA</span><span class="v">activo</span></div>
+          <div class="item"><span>Integración SII</span><span class="v">docs en línea</span></div>
         </div>
       </aside>
     </div>
@@ -1662,7 +1661,6 @@
           <span class="chip">SOAP</span>
           <span class="chip">OAuth / SSO</span>
           <span class="chip">XML / XSD</span>
-          <span class="chip">BI Publisher</span>
         </div>
       </div>
 
@@ -1704,8 +1702,6 @@
           <span class="chip">Docker Compose</span>
           <span class="chip">Docker Swarm</span>
           <span class="chip">nginx</span>
-          <span class="chip">Kubernetes (en aprendizaje)</span>
-          <span class="chip">Terraform (en aprendizaje)</span>
         </div>
       </div>
 
@@ -1750,7 +1746,7 @@
       </div>
       <div class="ai-card">
         <div class="num">06</div>
-        <h4>Complemento con ChatGPT</h4>
+        <h4>Complemento con ChatGPT y Gemini</h4>
         <p>Uso puntual para validación cruzada de soluciones y análisis comparativo entre modelos.</p>
       </div>
     </div>
@@ -1876,9 +1872,9 @@
           asegurando continuidad operativa y calidad de servicio.
         </p>
         <ul class="exp-projects">
+          <li><strong>Administración del parque de impresoras</strong>Configuración y aprovisionamiento de equipos en SafeQ (Y Soft) y PaperCut MF: colas de impresión segura con pull / follow-me printing, autenticación por PIN y tarjeta, definición de políticas de impresión y contabilización por usuario y centro de costo.</li>
+          <li><strong>Reportería para facturación</strong>Generación de reportes operativos de impresión, copia y escaneo para respaldar el proceso de facturación.</li>
           <li><strong>Soporte a usuarios finales</strong>Atención técnica y resolución de incidencias.</li>
-          <li><strong>Administración de equipos</strong>Configuración en la plataforma SafeQ con flujos de impresión segura.</li>
-          <li><strong>Reportería para facturación</strong>Generación de reportes operativos para respaldar el proceso de facturación.</li>
         </ul>
       </article>
 
@@ -1894,8 +1890,8 @@
         <div class="exp-location">Santiago, Chile</div>
         <p class="exp-summary">Soporte técnico interno a usuarios de la compañía.</p>
         <ul class="exp-projects">
-          <li><strong>Soporte interno</strong>Resolución de incidencias y configuración de estaciones de trabajo.</li>
           <li><strong>Active Directory</strong>Administración de cuentas y políticas.</li>
+          <li><strong>Soporte interno</strong>Resolución de incidencias y configuración de estaciones de trabajo.</li>
         </ul>
       </article>
 
@@ -1930,8 +1926,10 @@
         <strong style="color:var(--brand);">Clean Architecture</strong> estricta, tipado completo
         (<code style="font-family:var(--font-mono); font-size:0.9em; color:var(--accent);">mypy --strict</code>)
         y cobertura de tests amplia. Demuestra arquitectura de software para sistemas transaccionales
-        reales: concurrencia con locks pesimistas, atomicidad multi-entidad vía Unit of Work,
-        RBAC granular, audit trail inmutable, FEFO en perecibles y rotación de tokens JWT con detección de replay.
+        reales: concurrencia con locks pesimistas (bloqueo de fila en BD), atomicidad multi-entidad vía
+        Unit of Work (todo o nada en cada transacción), RBAC granular (permisos por rol), audit trail
+        inmutable (registro no editable de quién hizo qué), FEFO (primero en vencer, primero en salir)
+        en perecibles y rotación de tokens JWT con detección de replay.
       </p>
 
       <!-- Stats bento -->
