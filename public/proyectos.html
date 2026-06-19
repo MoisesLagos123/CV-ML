@@ -82,6 +82,12 @@
     -moz-osx-font-smoothing: grayscale; transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
     overflow-x: hidden;
   }
+  /* Modo claro: fondo de puntos (dot grid) con punto SÓLIDO, no translúcido */
+  [data-theme="light"] body {
+    background-image: radial-gradient(#D4D4D8 1.4px, transparent 1.6px);
+    background-size: 24px 24px;
+    background-repeat: repeat;
+  }
   a { color: var(--brand); text-decoration: none; transition: color 0.2s var(--ease); }
   a:hover { color: var(--brand-hover); }
   ::selection { background: var(--brand); color: #fff; }

@@ -214,6 +214,17 @@
     overflow-x: hidden;
   }
 
+  /* Modo claro: fondo de puntos (dot grid) con punto SÓLIDO, no translúcido */
+  [data-theme="light"] body {
+    background-image: radial-gradient(#D4D4D8 1.4px, transparent 1.6px);
+    background-size: 24px 24px;
+    background-repeat: repeat;
+  }
+  /* Tarjetas con acento: fondo opaco en claro para que los puntos no se cuelen */
+  [data-theme="light"] .bento-card.accent {
+    background: #E6F8FB;
+  }
+
   a {
     color: var(--brand);
     text-decoration: none;
@@ -1025,20 +1036,31 @@
   }
 
   .exp-projects li {
-    padding: var(--s-3);
-    background: var(--surface-2);
+    padding: var(--s-4);
     border-radius: var(--radius-md);
     font-size: 13.5px;
     color: var(--text);
     line-height: 1.6;
-    border-left: 3px solid var(--brand);
-    transition: all 0.2s var(--ease);
+    transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease);
   }
 
-  .exp-projects li:hover {
-    background: var(--surface-3);
-    border-left-color: var(--accent);
-    transform: translateX(2px);
+  /* Claro: tarjeta elevada con sombra */
+  [data-theme="light"] .exp-projects li {
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+  }
+  [data-theme="light"] .exp-projects li:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  /* Oscuro: tarjeta con tinte suave (azul de marca en oscuro, muy tenue) */
+  [data-theme="dark"] .exp-projects li {
+    background: rgba(96, 165, 250, 0.055);
+  }
+  [data-theme="dark"] .exp-projects li:hover {
+    background: rgba(96, 165, 250, 0.10);
+    transform: translateY(-2px);
   }
 
   .exp-projects li strong {
