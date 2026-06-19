@@ -500,6 +500,30 @@
     outline-offset: 3px;
     border-radius: 4px;
   }
+
+  /* ============================================================
+     THEME TRANSITION — mosaico / pixel dissolve
+     ============================================================ */
+  .theme-mosaic {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: grid;
+    pointer-events: none;
+    contain: layout paint;
+  }
+  .theme-mosaic .tile {
+    transform: scale(0);
+    opacity: 0;
+    will-change: transform, opacity;
+    transition: transform 0.24s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.24s linear;
+  }
+  .theme-mosaic.in .tile  { transform: scale(1.06); opacity: 1; }
+  .theme-mosaic.out .tile { transform: scale(0);    opacity: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-mosaic { display: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -981,16 +1005,68 @@
     var icon = document.getElementById('themeIcon');
     var sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
     var moon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    var root = document.documentElement;
+
     function updateUI() {
-      var t = document.documentElement.getAttribute('data-theme');
+      var t = root.getAttribute('data-theme');
       icon.innerHTML = t === 'dark' ? sun : moon;
     }
-    btn.addEventListener('click', function() {
-      var cur = document.documentElement.getAttribute('data-theme') || 'dark';
-      var next = cur === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
+    function applyTheme(next) {
+      root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
       updateUI();
+    }
+
+    function mosaicToggle(next) {
+      var cur = root.getAttribute('data-theme') || 'dark';
+
+      root.setAttribute('data-theme', next);
+      var cs = getComputedStyle(root);
+      var cA = cs.getPropertyValue('--bg').trim() || '#000';
+      var cB = cs.getPropertyValue('--surface-2').trim() || cA;
+      root.setAttribute('data-theme', cur);
+
+      var vw = window.innerWidth, vh = window.innerHeight;
+      var size = Math.max(64, Math.round(vw / 14));
+      var cols = Math.ceil(vw / size);
+      var rows = Math.ceil(vh / size);
+      var step = 12;
+      var maxDiag = (cols - 1) + (rows - 1);
+
+      var grid = document.createElement('div');
+      grid.className = 'theme-mosaic';
+      grid.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+      grid.style.gridTemplateRows = 'repeat(' + rows + ', 1fr)';
+
+      for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+          var tile = document.createElement('div');
+          tile.className = 'tile';
+          tile.style.background = ((r + c) % 2 === 0) ? cA : cB;
+          tile.style.transitionDelay = (((cols - 1 - c) + r) * step) + 'ms';
+          grid.appendChild(tile);
+        }
+      }
+      document.body.appendChild(grid);
+
+      var coverMs = maxDiag * step + 260;
+      void grid.offsetWidth;
+      grid.classList.add('in');
+
+      setTimeout(function () { applyTheme(next); }, Math.round(coverMs * 0.6));
+      setTimeout(function () {
+        grid.classList.remove('in');
+        grid.classList.add('out');
+      }, coverMs);
+      setTimeout(function () { grid.remove(); }, coverMs + maxDiag * step + 320);
+    }
+
+    btn.addEventListener('click', function () {
+      var cur = root.getAttribute('data-theme') || 'dark';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) { applyTheme(next); return; }
+      mosaicToggle(next);
     });
     updateUI();
   })();
