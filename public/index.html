@@ -75,6 +75,10 @@
       "name": "Duoc UC",
       "description": "Analista Programador Computacional, 2021"
     }
+  ],
+  "sameAs": [
+    "https://github.com/MoisesLagos123",
+    "https://www.linkedin.com/in/mois%C3%A9s-lagos-fernandez-81a13b6b/"
   ]
 }
 </script>
@@ -119,6 +123,9 @@
 
     --nav-bg: rgba(250, 250, 250, 0.72);
     --hero-grid-color: rgba(9, 9, 11, 0.04);
+    --hero-mesh-1: rgba(37, 99, 235, 0.07);
+    --hero-mesh-2: rgba(6, 182, 212, 0.06);
+    --hero-mesh-3: rgba(124, 58, 237, 0.05);
     --spotlight: rgba(37, 99, 235, 0.06);
 
     /* Radii */
@@ -171,6 +178,9 @@
 
     --nav-bg: rgba(10, 10, 11, 0.72);
     --hero-grid-color: rgba(255, 255, 255, 0.05);
+    --hero-mesh-1: rgba(59, 130, 246, 0.16);
+    --hero-mesh-2: rgba(34, 211, 238, 0.12);
+    --hero-mesh-3: rgba(124, 58, 237, 0.13);
     --spotlight: rgba(59, 130, 246, 0.12);
   }
 
@@ -188,13 +198,19 @@
 
   body {
     font-family: var(--font-body);
-    background: var(--bg);
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(38% 48% at 12% 10%, var(--hero-mesh-1), transparent 60%),
+      radial-gradient(42% 50% at 88% 18%, var(--hero-mesh-2), transparent 60%),
+      radial-gradient(48% 52% at 52% 90%, var(--hero-mesh-3), transparent 62%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--text);
     line-height: 1.6;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background 0.4s var(--ease), color 0.4s var(--ease);
+    transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
     overflow-x: hidden;
   }
 
@@ -361,19 +377,7 @@
     position: relative;
   }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--hero-grid-color) 1px, transparent 1px),
-      linear-gradient(90deg, var(--hero-grid-color) 1px, transparent 1px);
-    background-size: 48px 48px;
-    background-position: 0 0;
-    mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+  .hero-bg { display: none; }
 
   .hero-inner {
     position: relative;
@@ -606,24 +610,10 @@
     border-bottom: 1px solid var(--border);
     overflow: hidden;
     position: relative;
-  }
-
-  .marquee::before, .marquee::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 80px;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .marquee::before {
-    left: 0;
-    background: linear-gradient(to right, var(--bg), transparent);
-  }
-  .marquee::after {
-    right: 0;
-    background: linear-gradient(to left, var(--bg), transparent);
+    /* Difuminado lateral: enmascara el contenido en los bordes y deja ver el fondo
+       (mesh) detrás — sin "corte" y sin depender del color sólido del fondo. */
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
   }
 
   .marquee-track {
@@ -1276,6 +1266,24 @@
     transform: translateY(0);
   }
 
+  /* Decode-in para los títulos de sección — blur + letter-spacing que se normaliza.
+     Cada keyframe termina en el tracking de diseño del elemento. */
+  @keyframes decode-num {
+    from { opacity: 0; filter: blur(6px); letter-spacing: 0.4em; }
+    to   { opacity: 1; filter: blur(0);   letter-spacing: 0.5px; }
+  }
+  @keyframes decode-title {
+    from { opacity: 0; filter: blur(8px); letter-spacing: 0.2em; }
+    to   { opacity: 1; filter: blur(0);   letter-spacing: -1.5px; }
+  }
+  @keyframes decode-sub {
+    from { opacity: 0; filter: blur(6px); letter-spacing: 0.14em; }
+    to   { opacity: 1; filter: blur(0);   letter-spacing: 0; }
+  }
+  .reveal.visible .section-num   { animation: decode-num   0.7s var(--ease) both; animation-delay: 0.05s; }
+  .reveal.visible .section-title { animation: decode-title 0.7s var(--ease) both; animation-delay: 0.16s; }
+  .reveal.visible .section-sub   { animation: decode-sub   0.7s var(--ease) both; animation-delay: 0.30s; }
+
   .stagger > * { transition-delay: 0s; }
   .stagger.visible > *:nth-child(1) { transition-delay: 0.05s; }
   .stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
@@ -1477,21 +1485,21 @@
 
         <div class="bento-card">
           <div class="label">GitHub</div>
-          <a href="#" data-placeholder="github" class="link-row" style="margin-top:var(--s-2);">
+          <a href="https://github.com/MoisesLagos123" target="_blank" rel="noopener noreferrer" class="link-row" style="margin-top:var(--s-2);">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
             </svg>
-            Completar
+            MoisesLagos123
           </a>
         </div>
 
         <div class="bento-card">
           <div class="label">LinkedIn</div>
-          <a href="#" data-placeholder="linkedin" class="link-row" style="margin-top:var(--s-2);">
+          <a href="https://www.linkedin.com/in/mois%C3%A9s-lagos-fernandez-81a13b6b/" target="_blank" rel="noopener noreferrer" class="link-row" style="margin-top:var(--s-2);">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
-            Completar
+            Moisés Lagos Fernández
           </a>
         </div>
       </div>
@@ -1962,19 +1970,19 @@
       <!-- Stats bento -->
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:var(--s-3); margin:var(--s-5) 0;">
         <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:var(--s-4); text-align:center;">
-          <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">70+</div>
+          <div class="kpi-num" data-to="70" data-suffix="+" style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">70+</div>
           <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">commits</div>
         </div>
         <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:var(--s-4); text-align:center;">
-          <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">286</div>
+          <div class="kpi-num" data-to="286" style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">286</div>
           <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">tests backend</div>
         </div>
         <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:var(--s-4); text-align:center;">
-          <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">162</div>
+          <div class="kpi-num" data-to="162" style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">162</div>
           <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">tests frontend</div>
         </div>
         <div style="background:var(--accent-soft); border:1px solid var(--accent); border-radius:var(--radius-md); padding:var(--s-4); text-align:center;">
-          <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--accent); letter-spacing:-1px; line-height:1;">100<span style="font-size:0.6em;">%</span></div>
+          <div class="kpi-num" data-to="100" data-suffix='<span style="font-size:0.6em;">%</span>' style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--accent); letter-spacing:-1px; line-height:1;">100<span style="font-size:0.6em;">%</span></div>
           <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">tipado mypy</div>
         </div>
       </div>
@@ -2240,6 +2248,35 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  })();
+
+  // ===== Count-up KPIs =====
+  (function() {
+    var nums = document.querySelectorAll('.kpi-num');
+    if (!nums.length) return;
+    function paint(el, val) { el.innerHTML = val + (el.getAttribute('data-suffix') || ''); }
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      nums.forEach(function(el) { paint(el, el.getAttribute('data-to')); });
+      return;
+    }
+    function run(el) {
+      var to = parseInt(el.getAttribute('data-to'), 10), start = null, dur = 1100;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        paint(el, Math.round((1 - Math.pow(1 - p, 3)) * to)); // easeOutCubic
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.4 });
+    nums.forEach(function(el) { paint(el, 0); io.observe(el); });
   })();
 
   // ===== Easter egg =====

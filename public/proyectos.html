@@ -40,6 +40,9 @@
     --shadow-glow: 0 0 0 1px rgba(37,99,235,0.10);
     --nav-bg: rgba(250,250,250,0.72);
     --hero-grid-color: rgba(9,9,11,0.04);
+    --hero-mesh-1: rgba(37, 99, 235, 0.07);
+    --hero-mesh-2: rgba(6, 182, 212, 0.06);
+    --hero-mesh-3: rgba(124, 58, 237, 0.05);
     --radius-sm: 8px; --radius-md: 14px; --radius-lg: 22px; --radius-xl: 28px; --radius-pill: 999px;
     --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
     --font-display: 'Space Grotesk', 'Inter Tight', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
@@ -59,6 +62,9 @@
     --shadow-glow: 0 0 0 1px rgba(59,130,246,0.20);
     --nav-bg: rgba(10,10,11,0.72);
     --hero-grid-color: rgba(255,255,255,0.05);
+    --hero-mesh-1: rgba(59, 130, 246, 0.16);
+    --hero-mesh-2: rgba(34, 211, 238, 0.12);
+    --hero-mesh-3: rgba(124, 58, 237, 0.13);
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -66,9 +72,14 @@
 
   html { scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; }
   body {
-    font-family: var(--font-body); background: var(--bg); color: var(--text);
+    font-family: var(--font-body); background-color: var(--bg); color: var(--text);
+    background-image:
+      radial-gradient(38% 48% at 12% 10%, var(--hero-mesh-1), transparent 60%),
+      radial-gradient(42% 50% at 88% 18%, var(--hero-mesh-2), transparent 60%),
+      radial-gradient(48% 52% at 52% 90%, var(--hero-mesh-3), transparent 62%);
+    background-attachment: fixed; background-repeat: no-repeat;
     line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; transition: background 0.4s var(--ease), color 0.4s var(--ease);
+    -moz-osx-font-smoothing: grayscale; transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
     overflow-x: hidden;
   }
   a { color: var(--brand); text-decoration: none; transition: color 0.2s var(--ease); }
@@ -128,16 +139,7 @@
     padding: var(--s-10) 0 var(--s-7);
     position: relative;
   }
-  .page-hero-bg {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(var(--hero-grid-color) 1px, transparent 1px),
-      linear-gradient(90deg, var(--hero-grid-color) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center top, #000 0%, transparent 70%);
-    pointer-events: none; z-index: 0;
-  }
+  .page-hero-bg { display: none; }
   .page-hero-inner { position: relative; z-index: 1; }
 
   .breadcrumb {
@@ -472,6 +474,22 @@
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  @keyframes decode-num {
+    from { opacity: 0; filter: blur(6px); letter-spacing: 0.4em; }
+    to   { opacity: 1; filter: blur(0);   letter-spacing: 0.5px; }
+  }
+  @keyframes decode-title {
+    from { opacity: 0; filter: blur(8px); letter-spacing: 0.2em; }
+    to   { opacity: 1; filter: blur(0);   letter-spacing: -1.5px; }
+  }
+  @keyframes decode-sub {
+    from { opacity: 0; filter: blur(6px); letter-spacing: 0.14em; }
+    to   { opacity: 1; filter: blur(0);   letter-spacing: 0; }
+  }
+  .reveal.visible .section-num   { animation: decode-num   0.7s var(--ease) both; animation-delay: 0.05s; }
+  .reveal.visible .section-title { animation: decode-title 0.7s var(--ease) both; animation-delay: 0.16s; }
+  .reveal.visible .section-sub   { animation: decode-sub   0.7s var(--ease) both; animation-delay: 0.30s; }
+
   /* Responsive */
   @media (max-width: 900px) {
     .ps-stats { grid-template-columns: repeat(2, 1fr); }
@@ -617,19 +635,19 @@
       <!-- Stats -->
       <div class="ps-stats">
         <div class="ps-stat">
-          <div class="value">70+</div>
+          <div class="value kpi-num" data-to="70" data-suffix="+">70+</div>
           <div class="label">Commits</div>
         </div>
         <div class="ps-stat">
-          <div class="value">286</div>
+          <div class="value kpi-num" data-to="286">286</div>
           <div class="label">Tests backend</div>
         </div>
         <div class="ps-stat">
-          <div class="value">162</div>
+          <div class="value kpi-num" data-to="162">162</div>
           <div class="label">Tests frontend</div>
         </div>
         <div class="ps-stat accent">
-          <div class="value">100<span class="small">%</span></div>
+          <div class="value kpi-num" data-to="100" data-suffix='<span class="small">%</span>'>100<span class="small">%</span></div>
           <div class="label">Tipado mypy</div>
         </div>
       </div>
@@ -1086,6 +1104,35 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  })();
+
+  // ===== Count-up KPIs =====
+  (function() {
+    var nums = document.querySelectorAll('.kpi-num');
+    if (!nums.length) return;
+    function paint(el, val) { el.innerHTML = val + (el.getAttribute('data-suffix') || ''); }
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      nums.forEach(function(el) { paint(el, el.getAttribute('data-to')); });
+      return;
+    }
+    function run(el) {
+      var to = parseInt(el.getAttribute('data-to'), 10), start = null, dur = 1100;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        paint(el, Math.round((1 - Math.pow(1 - p, 3)) * to));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.4 });
+    nums.forEach(function(el) { paint(el, 0); io.observe(el); });
   })();
 </script>
 
