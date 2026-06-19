@@ -979,6 +979,9 @@
     font-family: var(--font-mono);
   }
 
+  /* La tarjeta de proyecto reutiliza el estilo featured pero NO el badge "Actual" */
+  .exp-card.featured.is-project::before { content: none; }
+
   .exp-meta {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -1932,7 +1935,7 @@
       <p class="section-sub">Construir cosas reales en mi tiempo libre es como me mantengo afilado.</p>
     </div>
 
-    <article class="exp-card featured" style="overflow:hidden;">
+    <article class="exp-card featured is-project">
       <div class="exp-meta">
         <div>
           <h3 class="exp-role" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
@@ -1957,7 +1960,7 @@
       </p>
 
       <!-- Stats bento -->
-      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s-3); margin:var(--s-5) 0;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:var(--s-3); margin:var(--s-5) 0;">
         <div style="background:var(--surface-2); border:1px solid var(--border); border-radius:var(--radius-md); padding:var(--s-4); text-align:center;">
           <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--brand); letter-spacing:-1px; line-height:1;">70+</div>
           <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">commits</div>
