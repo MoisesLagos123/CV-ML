@@ -1368,19 +1368,73 @@
   /* ============================================================
      PRINT
      ============================================================ */
+  /* ============================================================
+     PRINT / "Descargar CV" — el PDF se construye desde este mismo HTML
+     ============================================================ */
   @media print {
-    nav, .marquee, .theme-toggle, footer .footer-cta, footer .footer-links { display: none; }
-    body { background: white; color: black; }
-    .skill-card, .exp-card, .edu-card, .ai-card, .about-text, .aside-card, .bento-card {
-      box-shadow: none !important;
-      border: 1px solid #ccc !important;
-      background: white !important;
-      color: black !important;
-      page-break-inside: avoid;
+    /* Re-tematiza a tinta sobre papel (vale para claro y oscuro) */
+    :root, [data-theme="dark"], [data-theme="light"] {
+      --bg:#fff; --surface:#fff; --surface-2:#fff; --surface-3:#fff;
+      --text:#111; --text-muted:#333; --text-soft:#555;
+      --border:#d0d0d0; --border-strong:#bcbcbc;
+      --brand:#1d4ed8; --brand-hover:#1d4ed8; --accent:#0e7490; --accent-soft:#eef2f9;
+      --nav-bg:#fff;
+      --hero-mesh-1:transparent; --hero-mesh-2:transparent; --hero-mesh-3:transparent;
+      --shadow-sm:none; --shadow-md:none; --shadow-lg:none; --shadow-glow:none;
     }
-    section { padding: 20px 0; }
-    .hero { padding: 30px 0; }
-    .hero h1 .accent { -webkit-text-fill-color: black; color: black; }
+    html, body { background:#fff !important; background-image:none !important; color:#111; }
+
+    /* Oculta lo interactivo y decorativo (el contacto ya está en el bento del hero) */
+    nav, .theme-toggle, .marquee, .theme-mosaic, .btn, footer, .demo-note { display:none !important; }
+
+    /* Muestra todo el contenido (anula animaciones de scroll y blur) */
+    .reveal { opacity:1 !important; transform:none !important; }
+    *, *::before, *::after { animation:none !important; filter:none !important; }
+
+    /* Acentos con degradado -> color sólido legible */
+    .accent, .gradient, .section-title span, .hero h1 .accent {
+      -webkit-text-fill-color:#1d4ed8 !important; color:#1d4ed8 !important; background:none !important;
+    }
+
+    /* Sin "cuadros": tarjetas planas y compactas, separadas por espacio (no por cajas) */
+    .skill-card, .exp-card, .edu-card, .ai-card, .about-text, .aside-card,
+    .bento-card, .project-showcase, .ps-block, .exp-projects li, .other-card {
+      border:none !important; box-shadow:none !important;
+      background:transparent !important; color:#111 !important;
+      padding:0 !important; margin:0 !important;
+      overflow:visible !important; /* evita que se corte la 1ra letra de las etiquetas */
+    }
+    .exp-card, .edu-card, .other-card { break-inside:avoid; page-break-inside:avoid; }
+
+    /* Oculta adornos que no aportan en papel (iconos, números decorativos, etiquetas) */
+    .skill-icon, .edu-card .icon, .ai-card .num, .exp-tag { display:none !important; }
+
+    /* Logros como lista con viñeta, compactos */
+    .exp-projects { margin:3px 0 0 !important; }
+    .exp-projects li { position:relative; padding:0 0 0 13px !important; margin:0 0 4px !important; }
+    .exp-projects li::before { content:"•"; position:absolute; left:1px; top:0; color:#1d4ed8; }
+    .exp-projects li strong { font-size:12px !important; }
+
+    /* Grillas y espaciado compactos */
+    .bento { grid-template-columns:1fr 1fr !important; gap:3px 24px !important; }
+    .b-3, .b-4 { grid-column:span 2 !important; }
+    .skills-grid, .ai-grid { grid-template-columns:1fr 1fr !important; gap:3px 22px !important; }
+    .about-grid { grid-template-columns:1fr !important; gap:8px !important; }
+    .stack-grid { gap:6px 18px !important; }
+    section { padding:9px 0 !important; }
+    .section-head { margin-bottom:7px !important; }
+    .hero { padding:0 0 10px !important; }
+    .exp-card { margin:0 0 9px !important; }
+    .exp-summary { margin:2px 0 4px !important; }
+
+    /* Tipografía compacta para papel */
+    body { font-size:11px; line-height:1.42; }
+    .section-title { font-size:19px !important; }
+    .exp-role { font-size:14px !important; }
+    .exp-summary, .ai-card p, .about-text p, .exp-projects li { font-size:11px !important; line-height:1.42 !important; }
+
+    a { color:#1d4ed8; text-decoration:none; }
+    @page { margin:1.1cm; }
   }
 
   /* Focus visible (a11y) */
@@ -1487,14 +1541,14 @@
           </svg>
           Contactar
         </a>
-        <a href="cv-moises-lagos.docx" class="btn btn-secondary" download="Cv-Moises-Lagos-2026.docx">
+        <button id="downloadCv" type="button" class="btn btn-secondary" title="Genera un PDF del CV desde esta misma página (imprimir / guardar como PDF)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
             <polyline points="7 10 12 15 17 10"/>
             <line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
           Descargar CV
-        </a>
+        </button>
       </div>
 
       <!-- ===== Bento Snapshot ===== -->
@@ -1914,7 +1968,7 @@
           </li>
           <li>
             <strong>SPA de orquestación BOPIS</strong>
-            Frontend principal (~85 % de los commits) en Angular 20 + Ionic 8 + Capacitor 7.
+            Frontend principal en Angular 20 + Ionic 8 + Capacitor 7.
             Flujo end-to-end de preparación de pedidos, SSO OAuth e integración con flujos REST
             de OIC. Despliegue: Dockerfiles multi-stage + GitLab CI a Docker Swarm + nginx reverse proxy.
           </li>
@@ -2097,8 +2151,17 @@
 
       <p style="font-family:var(--font-mono); font-size:12px; color:var(--text-soft); margin-top:var(--s-4); line-height:1.6;">
         <span style="color:var(--text-muted);">Credenciales demo:</span>
-        <code style="background:var(--surface-2); border:1px solid var(--border); color:var(--text); padding:3px 8px; border-radius:6px; font-family:var(--font-mono);">admin@minierp.cl</code>
-        <code style="background:var(--surface-2); border:1px solid var(--border); color:var(--text); padding:3px 8px; border-radius:6px; font-family:var(--font-mono); margin-left:4px;">Admin12345!</code>
+        <code style="background:var(--surface-2); border:1px solid var(--border); color:var(--text); padding:3px 8px; border-radius:6px; font-family:var(--font-mono);">pruebacv@dominiofalso.cl</code>
+        <code style="background:var(--surface-2); border:1px solid var(--border); color:var(--text); padding:3px 8px; border-radius:6px; font-family:var(--font-mono); margin-left:4px;">Pruebacv.!!!@1994</code>
+      </p>
+
+      <p class="demo-note" style="display:flex; gap:8px; align-items:flex-start; margin-top:var(--s-3); padding:10px 12px; background:rgba(245,158,11,0.08); border:1px solid var(--warning); border-radius:var(--radius-md); font-size:12.5px; line-height:1.55; color:var(--text-muted);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0; width:16px; height:16px; color:var(--warning); margin-top:1px;">
+          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span><strong style="color:var(--text);">La primera carga puede tardar:</strong> el backend corre en un plan con <em>scale-to-zero</em> que suspende el servicio tras un periodo de inactividad. La primera petición dispara un <em>cold start</em>: levanta el contenedor y reabre el pool de conexiones a PostgreSQL antes de responder, por lo que puede demorar varios segundos. Las siguientes llamadas responden a velocidad normal.</span>
       </p>
     </article>
   </section>
@@ -2211,7 +2274,7 @@
     </div>
     <div class="footer-meta">
       <span>© 2026 · Moisés Lagos F. · Santiago, Chile</span>
-      <span>HTML + CSS + JS vanilla · Sin dependencias · Bento + Swiss + OLED</span>
+      <span>Oracle EBS · PL/SQL · Integraciones empresariales · Finanzas y reporting</span>
     </div>
   </div>
 </footer>
@@ -2338,6 +2401,18 @@
       });
     }, { threshold: 0.4 });
     nums.forEach(function(el) { paint(el, 0); io.observe(el); });
+  })();
+
+  // ===== Descargar CV: genera el PDF desde este HTML (imprimir) =====
+  (function() {
+    var btn = document.getElementById('downloadCv');
+    if (btn) btn.addEventListener('click', function() { window.print(); });
+    // Asegura que los KPIs muestren su valor final al imprimir (no "0")
+    window.addEventListener('beforeprint', function() {
+      document.querySelectorAll('.kpi-num').forEach(function(el) {
+        el.innerHTML = el.getAttribute('data-to') + (el.getAttribute('data-suffix') || '');
+      });
+    });
   })();
 
   // ===== Easter egg =====
