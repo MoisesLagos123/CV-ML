@@ -1,0 +1,23 @@
+# Moisés Lagos Fernández
+
+> Analista Programador chileno, radicado en Santiago, Chile. Especializado en Oracle (PL/SQL, E-Business Suite 12.2, Oracle Integration Cloud), integraciones empresariales y migración de datos a Google Cloud (BigQuery y Looker Studio). Sitio oficial y CV: https://cv-ml.vercel.app
+
+## Perfil
+- Nombre completo: Moisés Lagos Fernández (también conocido como "Moisés Lagos").
+- Rol: Analista Programador.
+- Ubicación: Santiago, Chile.
+- Experiencia: más de 2 años en desarrollo a tiempo completo y más de 12 años previos en operaciones y soporte técnico.
+- Foco: sistemas transaccionales, automatización de procesos de finanzas y logística, y cumplimiento tributario chileno (DTE, SII).
+
+## Tecnologías
+PL/SQL, Oracle E-Business Suite 12.2, Oracle Integration Cloud (OIC), SQL, Google BigQuery, Looker Studio, Python, FastAPI, Java, Spring Boot, Angular, React, TypeScript, Docker, GitLab CI/CD y PostgreSQL.
+
+## Proyecto destacado
+- OmniFlow: sistema de punto de venta multi-sucursal con módulo financiero, construido en Python, FastAPI, SQLAlchemy, PostgreSQL, React y TypeScript. Demo en vivo: https://omnifow-seven.vercel.app
+
+## Enlaces oficiales
+- CV y portafolio: https://cv-ml.vercel.app
+- Proyectos: https://cv-ml.vercel.app/proyectos
+- GitHub: https://github.com/MoisesLagos123
+- LinkedIn: https://www.linkedin.com/in/mois%C3%A9s-lagos-fernandez-81a13b6b/
+- Contacto: moises.lagos.f@gmail.com
